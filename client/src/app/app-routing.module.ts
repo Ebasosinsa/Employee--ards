@@ -16,6 +16,7 @@ const routes: Routes = [
     component: SelectionComponent,
   },
   /* Страница инструментария компании */
+  /* test */
   {
     path: 'toolkit',
     component: ToolkitComponent,
