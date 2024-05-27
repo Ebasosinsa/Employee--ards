@@ -1,0 +1,68 @@
+.sidebar {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-color: #054e7e;
+  border-right: 1px Solid rgba(0, 0, 0, 0.15);
+}
+
+.sidebar__header {
+  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
+  height: 70px;
+}
+.sidebar__header img {
+  height: 100%;
+  width: 235px;
+}
+
+.sidebar__block {
+  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.sidebar__button {
+  width: 100%;
+}
+.sidebar__button__main {
+  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
+}
+/*.sidebar__button__other{}*/
+
+.sidebar__button__main__button,
+.sidebar__button__other__button {
+  height: 45px;
+  padding-left: 30px;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+}
+
+.sidebar__button__main__button:hover,
+.sidebar__button__other__button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.07);
+  transition-duration: 0.2s;
+}
+
+.sidebar__button__main__icon,
+.sidebar__button__other__icon {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+.sidebar__button__main__text,
+.sidebar__button__other__text {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+  padding-left: 10px;
+
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.5;
+  outline: none;
+}

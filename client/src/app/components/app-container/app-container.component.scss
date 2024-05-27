@@ -1,0 +1,9 @@
+.app-container {
+  padding-left: 300px;
+  display: grid;
+  grid-template-rows: 70px 70px 1fr;
+}
+
+.app-container__block {
+  display: block;
+}
