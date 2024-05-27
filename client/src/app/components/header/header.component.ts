@@ -5,10 +5,15 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  showSettings(): void {
-    console.log((showeSettingsSwitch = !showeSettingsSwitch));
+  condition: boolean = false;
+  /* Какое-то колхозище ебаное, надо переделать...*/
+  /* Чисто для теста, не более*/
+
+  showSettings() {
+    this.condition = !this.condition;
+    console.log('нажатие> ', this.condition);
+    console.log(this);
   }
 }
-let showeSettingsSwitch: boolean = false;
 /*visibility: visible; */
 // выводим html элемента body

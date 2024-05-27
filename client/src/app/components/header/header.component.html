@@ -1,7 +1,7 @@
 <!--Верстка верхнего меню-->
 <div class="header">
   <div class="header__button" on-click="showSettings()">
-    <span class="window__settings">
+    <span class="window__settings" *ngIf="condition">
       <div class="window__settings__button">
         <div class="window__settings__button__icon">
           <img src="assets/img/svg/people-1.svg" />
