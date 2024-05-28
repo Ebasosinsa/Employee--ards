@@ -1,1 +1,25 @@
-<p>toolkit works!</p>
+<div class="search-plug">
+  <!--plug-->
+  <div class="search-plug__body">
+    <div class="search-plug__body__text">
+      Выберите интересующий вас инструментраздел:
+    </div>
+  </div>
+</div>
+<div class="conntent">
+  <div class="toolkit">
+    <div class="tool__card" *ngFor="let mockToolKit of mockToolKits">
+      <div class="tool__card__body">
+        <div>
+          <div class="tool__card__body__title">
+            Направление на медицинский осмотр работников компании
+          </div>
+        </div>
+        <div class="tool__card__body__icon">
+          <div class="tool__card__body__icon__img"></div>
+        </div>
+      </div>
+    </div>
+    <!---->
+  </div>
+</div>
