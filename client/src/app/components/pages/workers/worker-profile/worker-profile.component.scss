@@ -95,7 +95,7 @@ input:focus {
   transition-duration: 0.2s;
 }
 
-.conntent {
+.content {
   padding: 20px;
   overflow: auto;
   height: calc(100vh - 184px);
@@ -153,7 +153,6 @@ input:focus {
   padding-top: 20px;
   height: 100%;
 }
-
 .worker-profile__basic-info__content__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -163,15 +162,15 @@ input:focus {
 
 .worker-profile__basic-info__content__container__job-info,
 .worker-profile__basic-info__content__container__employee-info {
-  display: grid;
-  row-gap: 10px;
+  display: block;
 }
-
 .worker-profile__basic-info__content__container__job-info__block,
 .worker-profile__basic-info__content__container__employee-info__block {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-      column-gap: 10px;
+  grid-template-columns: 195px 1fr;
+  column-gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .worker-profile__basic-info__content__container__job-info__block__title,
@@ -225,4 +224,5 @@ input:focus {
 }
 
 .worker-profile__additional-info {
+  color: 1;
 }
