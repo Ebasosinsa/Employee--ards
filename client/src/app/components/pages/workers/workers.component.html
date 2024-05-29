@@ -1,74 +1,74 @@
 <div class="search">
-  <div class="search__body">
-    <div class="search__body__add-people">
-      <div class="search__body__add-people__icon">
-        <img src="assets/img/svg/people-plus-one.svg" />
-      </div>
-      <div class="search__body__add-people__text">Добавить сотрудника</div>
-    </div>
-    <div class="search__body__strsearch">
-      <input class="search__body__strsearch__input" placeholder="Поиск в картотеке ..." />
-    </div>
-    <div class="search__body__btnsearch">
-      <img src="assets/img/svg/search.svg" />
-    </div>
-    <div class="search__body__filter">Фильтры</div>
-  </div>
+	<div class="search__body">
+		<div class="search__body__add-people">
+			<div class="search__body__add-people__icon">
+				<img src="assets/img/svg/people-plus-one.svg" />
+			</div>
+			<div class="search__body__add-people__text">Добавить сотрудника</div>
+		</div>
+		<div class="search__body__strsearch">
+			<input class="search__body__strsearch__input" placeholder="Поиск в картотеке ..." />
+		</div>
+		<div class="search__body__btnsearch">
+			<img src="assets/img/svg/search.svg" />
+		</div>
+		<div class="search__body__filter">Фильтры</div>
+	</div>
 </div>
 <div class="conntent">
-  <div class="workers">
-    <div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile">
-      <div class="workers__card__body">
-        <div class="workers__card__body__name">
-          <div class="workers__card__body__name__fio">
-            {{ mockWorkersCard.fio }}
-          </div>
-          <div class="workers__card__body__name__category">
-            <img src="assets/img/svg/{{ mockWorkersCard.itr }}.svg" />
-            <!--<img src="assets/img/svg/compass.svg" />-->
-          </div>
-        </div>
-        <div class="workers__card__body__line"></div>
-        <div class="workers__card__body__info">
-          <div class="workers__card__body__info__row">
-            <div class="workers__card__body__info__row__section">
-              Дата рождения:
-            </div>
-            <div class="workers__card__body__info__row__section-info">
-              {{ mockWorkersCard.dateHBD }}
-            </div>
-          </div>
-          <div class="workers__card__body__info__row">
-            <div class="workers__card__body__info__row__section">
-              Образование:
-            </div>
-            <div class="workers__card__body__info__row__section-info">
-              {{ mockWorkersCard.education }}
-            </div>
-          </div>
-          <div class="workers__card__body__info__row">
-            <div class="workers__card__body__info__row__section">
-              Медосмотр:
-            </div>
-            <div class="workers__card__body__info__row__section-info">
-              31.12.2043
-            </div>
-          </div>
-          <div class="workers__card__body__info__row">
-            <div class="workers__card__body__info__row__section">
-              Должность:
-            </div>
-            <div class="workers__card__body__info__row__section-info">
-              {{ mockWorkersCard.job }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="workers">
+		<div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile">
+			<div class="workers__card__body">
+				<div class="workers__card__body__name">
+					<div class="workers__card__body__name__fio">
+						{{ mockWorkersCard.fio }}
+					</div>
+					<div class="workers__card__body__name__category">
+						<img src="assets/img/svg/{{ mockWorkersCard.itr }}.svg" />
+						<!--<img src="assets/img/svg/compass.svg" />-->
+					</div>
+				</div>
+				<div class="workers__card__body__line"></div>
+				<div class="workers__card__body__info">
+					<div class="workers__card__body__info__row">
+						<div class="workers__card__body__info__row__section">
+							Дата рождения:
+						</div>
+						<div class="workers__card__body__info__row__section-info">
+							{{ mockWorkersCard.dateHBD }}
+						</div>
+					</div>
+					<div class="workers__card__body__info__row">
+						<div class="workers__card__body__info__row__section">
+							Образование:
+						</div>
+						<div class="workers__card__body__info__row__section-info">
+							{{ mockWorkersCard.education }}
+						</div>
+					</div>
+					<div class="workers__card__body__info__row">
+						<div class="workers__card__body__info__row__section">
+							Медосмотр:
+						</div>
+						<div class="workers__card__body__info__row__section-info">
+							31.12.2043
+						</div>
+					</div>
+					<div class="workers__card__body__info__row">
+						<div class="workers__card__body__info__row__section">
+							Должность:
+						</div>
+						<div class="workers__card__body__info__row__section-info">
+							{{ mockWorkersCard.job }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <!-- удалить все ниже! -->
+		<!-- удалить все ниже! -->
 
-    <!-- конец карт -->
-    <div></div>
-  </div>
+		<!-- конец карт -->
+		<div></div>
+	</div>
 </div>
