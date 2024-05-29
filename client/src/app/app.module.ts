@@ -6,14 +6,14 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './components/main/main.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { AppContainerComponent } from './components/app-container/app-container.component';
-import { HeaderComponent } from './components/header/header.component';
-import { WorkersComponent } from './components/workers/workers.component';
-import { SelectionComponent } from './components/selection/selection.component';
-import { ToolkitComponent } from './components/toolkit/toolkit.component';
-import { WorkerProfileComponent } from './components/worker-profile/worker-profile.component';
+import { MainComponent } from './components/ui/main/main.component';
+import { SidebarComponent } from './components/ui/sidebar/sidebar.component';
+import { AppContainerComponent } from './components/ui/app-container/app-container.component';
+import { HeaderComponent } from './components/ui/header/header.component';
+import { WorkersComponent } from './components/pages/workers/workers.component';
+import { SelectionComponent } from './components/pages/selection/selection.component';
+import { ToolkitComponent } from './components/pages/toolkit/toolkit.component';
+import { WorkerProfileComponent } from './components/pages/workers/worker-profile/worker-profile.component';
 
 @NgModule({
   declarations: [

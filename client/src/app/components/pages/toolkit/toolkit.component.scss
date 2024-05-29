@@ -33,7 +33,7 @@
 .conntent {
   padding: 20px;
   overflow: auto;
-  height: calc(100vh - 184px);
+  height: calc(100vh - 196px);
   margin-top: 2px;
 }
 
@@ -41,10 +41,11 @@
   display: grid;
   column-gap: 20px;
   row-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
   align-items: center;
   vertical-align: middle;
   justify-content: left;
+  column-count: 2;
 }
 
 .tool__card {

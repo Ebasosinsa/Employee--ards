@@ -1,4 +1,3 @@
-<!--Верстка основного контента - главная страница картотеки-->
 <div class="search">
   <div class="search__body">
     <div class="search__body__add-people">
@@ -8,10 +7,7 @@
       <div class="search__body__add-people__text">Добавить сотрудника</div>
     </div>
     <div class="search__body__strsearch">
-      <input
-        class="search__body__strsearch__input"
-        placeholder="Поиск в картотеке ..."
-      />
+      <input class="search__body__strsearch__input" placeholder="Поиск в картотеке ..." />
     </div>
     <div class="search__body__btnsearch">
       <img src="assets/img/svg/search.svg" />
@@ -21,7 +17,7 @@
 </div>
 <div class="conntent">
   <div class="workers">
-    <div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards">
+    <div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile">
       <div class="workers__card__body">
         <div class="workers__card__body__name">
           <div class="workers__card__body__name__fio">

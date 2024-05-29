@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+/* Боковое меню(сайтбар) */
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

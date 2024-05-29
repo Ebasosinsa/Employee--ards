@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+/* Верхнее меню (шапка) */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

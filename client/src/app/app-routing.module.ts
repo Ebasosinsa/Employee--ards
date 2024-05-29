@@ -1,8 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WorkersComponent } from './components/workers/workers.component';
-import { SelectionComponent } from './components/selection/selection.component';
-import { ToolkitComponent } from './components/toolkit/toolkit.component';
+import { WorkersComponent } from './components/pages/workers/workers.component';
+import { SelectionComponent } from './components/pages/selection/selection.component';
+import { ToolkitComponent } from './components/pages/toolkit/toolkit.component';
+import { WorkerProfileComponent } from './components/pages/workers/worker-profile/worker-profile.component';
 
 const routes: Routes = [
   /* Главная страница картотеки */
@@ -16,10 +17,16 @@ const routes: Routes = [
     component: SelectionComponent,
   },
   /* Страница инструментария компании */
-  /* test */
   {
     path: 'toolkit',
     component: ToolkitComponent,
+  },
+  /* Страница профиля сотрудника */
+  /* В дальнейшем добавить путь по ид(profile/:id)*/
+  /* Для теста пока пусть profile */
+  {
+    path: 'profile',
+    component: WorkerProfileComponent,
   },
 ];
 

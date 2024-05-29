@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+/* Страница инструментов компании */
 interface mockToolKit {
   id: number;
 }
@@ -40,6 +40,18 @@ export class ToolkitComponent {
     },
     {
       id: 10,
+    },
+    {
+      id: 11,
+    },
+    {
+      id: 12,
+    },
+    {
+      id: 13,
+    },
+    {
+      id: 14,
     },
   ];
 }

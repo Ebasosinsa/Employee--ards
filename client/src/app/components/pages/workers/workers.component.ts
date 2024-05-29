@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+/* Главная страница картотеки (Все карты базы)) */
 interface mockWorkersCard {
   id: number;
   fio: string;

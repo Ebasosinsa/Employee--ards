@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+/* Основной блок картотеки */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
