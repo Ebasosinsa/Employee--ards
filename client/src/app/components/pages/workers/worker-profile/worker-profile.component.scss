@@ -46,7 +46,7 @@
   outline: none;
 }
 
-.search__body__strsearch {
+.search__body__str-search {
   display: flex;
   align-items: center;
   vertical-align: middle;
@@ -56,7 +56,7 @@
   background-color: rgba(217, 217, 217, 0.15);
 }
 
-.search__body__strsearch__input {
+.search__body__str-search__input {
   border: 0px Solid rgba(0, 0, 0, 0.15);
   outline: none;
   height: 100%;
@@ -76,7 +76,7 @@ input:focus {
   outline: none;
 }
 
-.search__body__btnsearch,
+.search__body__btn-search,
 .search__body__filter {
   border-left: 1px Solid rgba(0, 0, 0, 0.15);
   height: 100%;
@@ -87,7 +87,7 @@ input:focus {
   justify-content: center;
 }
 
-.search__body__btnsearch:hover,
+.search__body__btn-search:hover,
 .search__body__filter:hover,
 .search__body__add-people:hover {
   cursor: pointer;
@@ -96,7 +96,7 @@ input:focus {
 }
 
 .content {
-  padding: 20px;
+  padding: 20px 12px 20px 20px;
   overflow: auto;
   height: calc(100vh - 184px);
   margin-top: 2px;
@@ -108,16 +108,15 @@ input:focus {
 }
 
 .worker-profile__basic-info {
-  position: relative;
   background-color: white;
   border: 1px Solid rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  padding: 20px;
 }
 
 .worker-profile__basic-info__body {
-  padding: 20px;
   display: grid;
-  row-gap: 10px;
+  row-gap: 20px;
   grid-template-rows: 30px 1px 1fr;
 }
 
@@ -144,26 +143,24 @@ input:focus {
 
 .worker-profile__basic-info__line {
   border: 1px Solid rgba(0, 0, 0, 0.15);
+  content: " ";
 }
 
 .worker-profile__basic-info__content {
   display: grid;
   grid-template-columns: 1fr 1px auto;
   column-gap: 30px;
-  padding-top: 20px;
-  height: 100%;
 }
 .worker-profile__basic-info__content__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 50px;
-  padding-bottom: 20px;
 }
-
+/*
 .worker-profile__basic-info__content__container__job-info,
 .worker-profile__basic-info__content__container__employee-info {
-  display: block;
 }
+*/
 .worker-profile__basic-info__content__container__job-info__block,
 .worker-profile__basic-info__content__container__employee-info__block {
   display: grid;
@@ -207,6 +204,7 @@ input:focus {
 
 .worker-profile__basic-info__content__line {
   border: 1px Solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 20px;
 }
 
 .worker-profile__basic-info__content__photo {
@@ -218,11 +216,49 @@ input:focus {
   max-height: 270px;
 }
 
-.worker-profile__basic-info__content__photo__img {
-  width: 100%;
-  height: 100%;
+.worker-profile__additional-info {
+  display: grid;
+  row-gap: 20px;
 }
 
-.worker-profile__additional-info {
-  color: 1;
+.worker-profile__additional-info__section {
+  position: relative;
+  background-color: white;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.worker-profile__additional-info__section__prior {
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+  padding: 10px 20px 10px 20px;
+  column-gap: 15px;
+}
+
+.worker-profile__additional-info__section__content {
+  display: none;
+}
+.worker-profile__additional-info__section__content.show {
+  display: block;
+}
+
+.worker-profile__additional-info__section__prior__icon,
+.worker-profile__additional-info__section__prior__plus {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.worker-profile__additional-info__section__prior__text {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18px;
+  line-height: 1.5;
+  outline: none;
 }

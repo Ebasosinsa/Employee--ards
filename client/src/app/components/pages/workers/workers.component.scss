@@ -46,7 +46,7 @@
   outline: none;
 }
 
-.search__body__strsearch {
+.search__body__str-search {
   display: flex;
   align-items: center;
   vertical-align: middle;
@@ -56,7 +56,7 @@
   background-color: rgba(217, 217, 217, 0.15);
 }
 
-.search__body__strsearch__input {
+.search__body__str-search__input {
   border: 0px Solid rgba(0, 0, 0, 0.15);
   outline: none;
   height: 100%;
@@ -76,7 +76,7 @@ input:focus {
   outline: none;
 }
 
-.search__body__btnsearch,
+.search__body__btn-search,
 .search__body__filter {
   border-left: 1px Solid rgba(0, 0, 0, 0.15);
   height: 100%;
@@ -87,7 +87,7 @@ input:focus {
   justify-content: center;
 }
 
-.search__body__btnsearch:hover,
+.search__body__btn-search:hover,
 .search__body__filter:hover,
 .search__body__add-people:hover {
   cursor: pointer;
@@ -96,7 +96,7 @@ input:focus {
 }
 
 .content {
-  padding: 20px;
+  padding: 20px 12px 20px 20px;
   overflow: auto;
   height: calc(100vh - 184px);
   margin-top: 2px;
