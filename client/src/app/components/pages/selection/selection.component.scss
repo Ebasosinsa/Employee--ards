@@ -1,96 +1,123 @@
-.search {
+.search-plug {
   background-color: #fff;
   border-top: 1px Solid rgb(0, 0, 0, 0.15);
   border-bottom: 1px Solid rgb(0, 0, 0, 0.15);
-  height: 50px;
-  padding: 10px 20px;
+  min-height: 50px;
+  padding: 9px 20px;
 }
 
-.search__body {
+.search-plug__body {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
   border: 1px Solid rgb(0, 0, 0, 0.15);
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: 270px 1fr 50px 140px;
-  height: 100%;
 }
 
-.search__body__add-people {
-  background-color: #fff;
-  border-radius: 9px 0px 0px 9px;
-  border-right: 1px Solid rgba(0, 0, 0, 0.15);
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 50px 1fr;
-}
-
-.search__body__add-people__icon {
+.search-plug__body__text {
   display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  padding-left: 10px;
+
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 20px;
+  line-height: 2.5;
+  outline: none;
+}
+
+.content {
+  padding: 20px 12px 20px 20px;
+  overflow: auto;
+  height: calc(100vh - 196px);
+  margin-top: 2px;
+  overflow-y: scroll;
+}
+
+.selection {
+  display: grid;
+  column-gap: 20px;
+  row-gap: 20px;
+  grid-template-columns: repeat(2, minmax(385px, 1fr));
   align-items: center;
   vertical-align: middle;
   justify-content: center;
 }
 
-.search__body__add-people__text,
-.search__body__filter {
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  justify-content: left;
-  text-align: left;
-  word-spacing: 2.5px;
-  font-family: "Roboto", "Inter", Arial, sans-serif;
-  color: #054e7e;
-  font-size: 18px;
-  line-height: 1.5;
-  outline: none;
+.selection__section {
+  position: relative;
+  background-color: white;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  min-height: 220px;
 }
 
-.search__body__str-search {
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  justify-content: left;
-  height: 50px;
-  width: 100%;
-  background-color: rgba(217, 217, 217, 0.15);
-}
-
-.search__body__str-search__input {
-  border: 0px Solid rgba(0, 0, 0, 0.15);
-  outline: none;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(217, 217, 217, 0.15);
-  padding-left: 15px;
-  text-align: left;
-  word-spacing: 2.5px;
-  font-family: "Roboto", "Inter", Arial, sans-serif;
-  color: #054e7e;
-  font-size: 18px;
-  line-height: 1.5;
-  outline: none;
-}
-
-input:focus {
-  outline: none;
-}
-
-.search__body__btn-search,
-.search__body__filter {
-  border-left: 1px Solid rgba(0, 0, 0, 0.15);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  justify-content: center;
-}
-
-.search__body__btn-search:hover,
-.search__body__filter:hover,
-.search__body__add-people:hover {
+.selection__section:hover,
+.selection__section:hover .selection__section__body__line {
+  border: 1px Solid rgba(5, 78, 126, 0.75);
+  box-shadow: 0px 0px 10px 1px rgba(5, 78, 126, 0.12);
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.04);
-  transition-duration: 0.2s;
+  transition-duration: 0.25s;
+}
+
+.selection__section__body {
+  display: grid;
+  grid-template-rows: min-content 1px 1fr;
+  row-gap: 10px;
+  padding: 10px 20px 10px 20px;
+}
+
+.selection__section__body__head {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 10px;
+}
+
+.selection__section__body__head__icon {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.selection__section__body__head__title {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 20px;
+  /*line-height: 1.5;*/
+  outline: none;
+}
+
+.selection__section__body__line {
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+}
+
+.selection__section__body__content {
+  display: grid;
+}
+.selection__section__body__content__text {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+
+  text-align: justify;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 20px;
+  line-height: 1.5;
+  outline: none;
 }

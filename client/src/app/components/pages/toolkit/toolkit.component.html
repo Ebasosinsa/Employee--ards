@@ -1,23 +1,36 @@
 <div class="search-plug">
 	<!--plug-->
-	<div class="search-plug__text">
-		Выберите интересующий вас инструментраздел:
+	<div class="search-plug__body">
+		<div class="search-plug__body__text">
+			Выберите интересующий вас инструментраздел:
+		</div>
 	</div>
 </div>
 <div class="content">
 	<div class="toolkit">
-		<div class="tool__card" *ngFor="let mockToolKit of mockToolKits">
-			<div class="tool__card__body">
-				<div>
-					<div class="tool__card__body__title">
-						Формирование направлений на медицинский осмотр
-					</div>
+		<div class="toolkit__section" *ngFor="let mockToolKit of mockToolKits">
+			<div class="toolkit__section__body">
+				<div class="toolkit__section__body__head">
+					<div class="toolkit__section__body__head__icon"><img src="assets/img/svg/cardioelectric.svg" /></div>
+					<div class="toolkit__section__body__head__title">Формирование направлений на медицинский осмотр</div>
 				</div>
-				<div class="tool__card__body__icon">
-					<div class="tool__card__body__icon__img"></div>
+				<div class="toolkit__section__body__line"></div>
+				<div class="toolkit__section__body__content">
+					<div class="toolkit__section__body__content__text">Инструмент предназначен для быстрого и удобного выписывания медицинских направлений сотрудникам компании</div>
 				</div>
 			</div>
 		</div>
-		<!---->
+		<div class="toolkit__section" *ngFor="let mockToolKit of mockToolKits">
+			<div class="toolkit__section__body">
+				<div class="toolkit__section__body__head">
+					<div class="toolkit__section__body__head__icon"><img src="assets/img/svg/cardioelectric.svg" /></div>
+					<div class="toolkit__section__body__head__title">Формирование бланков журналов, листов учета, протоколов</div>
+				</div>
+				<div class="toolkit__section__body__line"></div>
+				<div class="toolkit__section__body__content">
+					<div class="toolkit__section__body__content__text">Инструмент разработан для быстрого и удобного оформления бланков журналов, листов учета и протоколов</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

@@ -23,7 +23,7 @@ export class ToolkitComponent {
     {
       id: 4,
     },
-    {
+    /*{
       id: 5,
     },
     {
@@ -52,6 +52,6 @@ export class ToolkitComponent {
     },
     {
       id: 14,
-    },
+    },*/
   ];
 }
