@@ -124,11 +124,14 @@
 						<img src="assets/img/svg/copy-one.svg" />
 					</div>
 					<div class="worker-profile__additional-info__section__prior__text">{{button.name_btn}}</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
+					<div class="worker-profile__additional-info__section__prior__plus-mines">
+						<img src="assets/img/svg/minus.svg" *ngIf="button === selectedButton && condition; else unset" />
+						<ng-template #unset>
+							<img src="assets/img/svg/plus.svg" />
+						</ng-template>
 					</div>
 				</div>
-				<div class="worker-profile__additional-info__section__content" [class.selected]="button === selectedButton && condition"></div>
+				<div class="worker-profile__additional-info__section__content" *ngIf="button === selectedButton && condition"></div>
 			</div>
 		</div>
 	</div>
