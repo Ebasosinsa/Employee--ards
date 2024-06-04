@@ -118,93 +118,17 @@
 			</div>
 		</div>
 		<div class="worker-profile__additional-info">
-			<div class="worker-profile__additional-info__section">
+			<div class="worker-profile__additional-info__section" *ngFor="let button of worker_buttons" (click)="WorkerProfileBtnSelect(button)">
 				<div class="worker-profile__additional-info__section__prior">
 					<div class="worker-profile__additional-info__section__prior__icon">
 						<img src="assets/img/svg/copy-one.svg" />
 					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
+					<div class="worker-profile__additional-info__section__prior__text">{{button.name_btn}}</div>
 					<div class="worker-profile__additional-info__section__prior__plus">
 						<img src="assets/img/svg/plus.svg" />
 					</div>
 				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
-			</div>
-			<div class="worker-profile__additional-info__section">
-				<div class="worker-profile__additional-info__section__prior">
-					<div class="worker-profile__additional-info__section__prior__icon">
-						<img src="assets/img/svg/copy-one.svg" />
-					</div>
-					<div class="worker-profile__additional-info__section__prior__text">Формирование бланков</div>
-					<div class="worker-profile__additional-info__section__prior__plus">
-						<img src="assets/img/svg/plus.svg" />
-					</div>
-				</div>
+				<div class="worker-profile__additional-info__section__content" [class.selected]="button === selectedButton && condition"></div>
 			</div>
 		</div>
 	</div>

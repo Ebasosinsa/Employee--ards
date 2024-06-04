@@ -236,6 +236,14 @@ input:focus {
 
 .worker-profile__additional-info__section__content {
   display: none;
+  height: 0px;
+  transition-property: height;
+  transition-duration: 5s;
+}
+
+.worker-profile__additional-info__section__content.selected {
+  display: block;
+  height: 100px;
 }
 
 .worker-profile__additional-info__section__prior__icon,
