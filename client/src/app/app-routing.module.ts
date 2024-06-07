@@ -25,7 +25,7 @@ const routes: Routes = [
   /* В дальнейшем добавить путь по ид(profile/:id)*/
   /* Для теста пока пусть profile */
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: WorkerProfileComponent,
   },
 ];

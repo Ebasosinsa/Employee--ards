@@ -17,20 +17,18 @@
 
 .window__settings {
   visibility: hidden;
-  width: 310px;
+  width: 250px;
   background-color: #fff;
   color: #054e7e;
   text-align: center;
-  border-left: 1px Solid rgba(0, 0, 0, 0.15);
-  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
-  border-top: 1px Solid rgba(0, 0, 0, 0.15);
+  border: 1px Solid rgba(0, 0, 0, 0.15);
   display: grid;
   row-gap: 1;
   transition-duration: 0.3s;
   position: absolute;
-  z-index: 1;
+  z-index: 111;
   top: 100%;
-  left: -181px;
+  left: -141px;
   margin-left: -60px;
 }
 
@@ -42,7 +40,7 @@
   content: " ";
   position: absolute;
   bottom: 100%;
-  left: 89%;
+  left: 94%;
   margin-left: -10px;
   border-width: 10px;
   border-style: solid;
@@ -64,8 +62,7 @@
   position: relative;
 }
 
-.window__settings_button:hover,
-.window__settings__button__root:hover {
+.window__settings__button:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.04);
   transition-duration: 0.2s;
@@ -76,6 +73,13 @@
   align-items: center;
   vertical-align: middle;
   justify-content: center;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18px;
+  line-height: 1.5;
+  outline: none;
 }
 
 .window__settings__button__text {

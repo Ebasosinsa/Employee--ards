@@ -1,10 +1,10 @@
 <?php
-
+/* Миграция таблицы должности сотрудников */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInfosotr extends Migration
+class CreateWorkerPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateInfosotr extends Migration
      */
     public function up()
     {
-        Schema::create('infosotr', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('date');
-            $table->string('choice');
-            $table->string('result');
-            $table->timestamps();
+        Schema::create('worker_positions', function (Blueprint $table) {
+
+            $table->id('id_positions');
+            $table->string('name_positions');
+
         });
     }
 
@@ -30,6 +28,6 @@ class CreateInfosotr extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infosotr');
+        Schema::dropIfExists('worker_positions');
     }
 }

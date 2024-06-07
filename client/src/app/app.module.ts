@@ -14,6 +14,7 @@ import { WorkersComponent } from './components/pages/workers/workers.component';
 import { SelectionComponent } from './components/pages/selection/selection.component';
 import { ToolkitComponent } from './components/pages/toolkit/toolkit.component';
 import { WorkerProfileComponent } from './components/pages/workers/worker-profile/worker-profile.component';
+import { WorkerProfilebtnService } from './service/worker-profilebtn.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { WorkerProfileComponent } from './components/pages/workers/worker-profil
     WorkerProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration(), WorkerProfilebtnService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

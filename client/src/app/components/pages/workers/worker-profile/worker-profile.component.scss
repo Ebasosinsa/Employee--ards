@@ -95,6 +95,124 @@ input:focus {
   transition-duration: 0.2s;
 }
 
+.filter {
+  display: none;
+}
+
+.filter__body {
+  position: fixed;
+  z-index: 999998;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.67);
+  /*transition: all 0.5s;*/
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 74px 350px;
+}
+
+.filter__body__close {
+  position: relative;
+  z-index: 999999;
+  top: 28px;
+  background: #fff;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  /*transition: all 0.5s;*/
+  width: 40px;
+  height: 40px;
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.filter__body__panel {
+  grid-column: 3 / 3;
+  position: relative;
+  z-index: 999999;
+  background: #fff;
+  border-left: 1px Solid rgba(0, 0, 0, 0.15);
+  /*transition: all 0.5s;*/
+  width: 270px;
+  padding: 40px;
+  height: 100vh;
+  display: grid;
+  row-gap: 20px;
+  grid-template-rows: min-content min-content min-content;
+}
+
+.filter__body__panel__section {
+  position: relative;
+  display: grid;
+  grid-template-rows: min-content;
+}
+
+.filter__body__panel__section__head {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  line-height: 1.5;
+  outline: none;
+}
+
+.filter__body__panel__section__head__filter {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 32px;
+  line-height: 1.5;
+  outline: none;
+}
+
+.filter__body__panel__section__body {
+  position: relative;
+  display: grid;
+  grid-template-rows: min-content;
+}
+
+.filter__body__panel__section__body__part {
+  position: relative;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 30px 1fr;
+  min-height: 40px;
+}
+
+.filter__body__panel__section__body__part__checkbox {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+.filter__body__panel__section__body__part__text {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: left;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18x;
+  /*line-height: 1.5;*/
+  outline: none;
+}
+
 .content {
   padding: 20px 12px 20px 20px;
   overflow: auto;

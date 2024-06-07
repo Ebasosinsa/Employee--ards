@@ -17,7 +17,7 @@
 </div>
 <div class="content">
 	<div class="workers">
-		<div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile">
+		<div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile/{{mockWorkersCard.id}}">
 			<div class="workers__card__body">
 				<div class="workers__card__body__name">
 					<div class="workers__card__body__name__fio">
