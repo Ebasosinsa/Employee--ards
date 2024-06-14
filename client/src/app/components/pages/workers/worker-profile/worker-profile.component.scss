@@ -96,48 +96,41 @@ input:focus {
 }
 
 .filter {
-  display: none;
+  visibility: hidden;
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0px;
+  height: 100vh;
 }
 
 .filter__body {
-  position: fixed;
-  z-index: 999998;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.67);
-  /*transition: all 0.5s;*/
-  width: 100%;
-  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 74px 350px;
+  grid-template-columns: 74px 350px;
 }
 
 .filter__body__close {
-  position: relative;
-  z-index: 999999;
-  top: 28px;
-  background: #fff;
   border: 1px Solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  margin-top: 15px;
+  top: 28px;
   border-radius: 50%;
-  /*transition: all 0.5s;*/
   width: 40px;
   height: 40px;
-  grid-column: 2 / 3;
   display: flex;
   align-items: center;
   vertical-align: middle;
   justify-content: center;
+  /* 
+
+  */
 }
 
 .filter__body__panel {
-  grid-column: 3 / 3;
   position: relative;
-  z-index: 999999;
   background: #fff;
   border-left: 1px Solid rgba(0, 0, 0, 0.15);
-  /*transition: all 0.5s;*/
-  width: 270px;
-  padding: 40px;
+  width: 349px;
   height: 100vh;
   display: grid;
   row-gap: 20px;
@@ -148,6 +141,7 @@ input:focus {
   position: relative;
   display: grid;
   grid-template-rows: min-content;
+  padding-left: 40px;
 }
 
 .filter__body__panel__section__head {
@@ -166,6 +160,7 @@ input:focus {
 }
 
 .filter__body__panel__section__head__filter {
+  padding-top: 40px;
   display: flex;
   align-items: center;
   vertical-align: middle;
@@ -209,10 +204,9 @@ input:focus {
   font-family: "Roboto", "Inter", Arial, sans-serif;
   color: #054e7e;
   font-size: 18x;
-  /*line-height: 1.5;*/
+  line-height: 1.5;
   outline: none;
 }
-
 .content {
   padding: 20px 12px 20px 20px;
   overflow: auto;

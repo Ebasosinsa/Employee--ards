@@ -19,15 +19,16 @@ class CreateWorkerInfosTable extends Migration
             $table->string('fio_worker');                                       /*ФИО сотрудника */
             $table->date('birthday_worker');                                    /*День рождения работника */
 
-            $table->bigInteger('departments_worker')->unsigned();           /*Филиал */
+            
+            $table->unsignedBigInteger('departments_worker')->unsigned();       /*Филиал */
             $table->foreign('departments_worker')->references('id_departments')->on('worker_departments');
 
-            $table->bigInteger('positions_worker')->unsigned();                 /*Должность сотрудника */
+            $table->unsignedBigInteger('positions_worker')->unsigned();         /*Должность сотрудника */
             $table->foreign('positions_worker')->references('id_positions')->on('worker_positions');
 
             $table->string('competency_worker');                                /*Разряд сотрудника */                 
 
-            $table->bigInteger('categories_worker')->unsigned();                /*Категория сотрудника */
+            $table->unsignedBigInteger('categories_worker')->unsigned();        /*Категория сотрудника */
             $table->foreign('categories_worker')->references('id_categories')->on('worker_categories');
 
             $table->date('date_hiring_worker');                                 /*Дата найма сотрудника */  

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { workerinfo } from '../../../models/workerinfo';
+import { WorkerInfoService } from '../../../service/WorkerInfo/worker-info.service';
 /* Главная страница картотеки (Все карты базы)) */
 interface mockWorkersCard {
   id: number;
@@ -15,6 +17,20 @@ interface mockWorkersCard {
   styleUrl: './workers.component.scss',
 })
 export class WorkersComponent {
+  /*WorkerInfos!: workerinfo[];
+
+  constructor(private WorkerInfoService: WorkerInfoService) {}
+
+  ngOnInit(): void {
+    this.getWorkerInfos();
+  }
+
+  getWorkerInfos() {
+    this.WorkerInfoService.getWorkerInfos().subscribe((data: workerinfo[]) => {
+      this.WorkerInfos = data;
+    });
+  }
+*/
   mockWorkersCards: mockWorkersCard[] = [
     {
       id: 1,

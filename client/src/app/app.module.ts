@@ -4,6 +4,8 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/ui/main/main.component';
@@ -15,6 +17,8 @@ import { SelectionComponent } from './components/pages/selection/selection.compo
 import { ToolkitComponent } from './components/pages/toolkit/toolkit.component';
 import { WorkerProfileComponent } from './components/pages/workers/worker-profile/worker-profile.component';
 import { WorkerProfilebtnService } from './service/worker-profilebtn.service';
+import { PopupComponent } from './components/ui/popup/popup.component';
+import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add-worker-popup/add-worker-popup.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +31,10 @@ import { WorkerProfilebtnService } from './service/worker-profilebtn.service';
     SelectionComponent,
     ToolkitComponent,
     WorkerProfileComponent,
+    PopupComponent,
+    AddWorkerPopupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [provideClientHydration(), WorkerProfilebtnService],
   bootstrap: [AppComponent],
 })

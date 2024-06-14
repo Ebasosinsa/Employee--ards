@@ -4,7 +4,7 @@
 			<div class="search__body__add-people__icon">
 				<img src="assets/img/svg/people-plus-one.svg" />
 			</div>
-			<div class="search__body__add-people__text">Добавить сотрудника</div>
+			<div class="search__body__add-people__text" (click)="openModal()">Добавить сотрудника</div>
 		</div>
 		<div class="search__body__str-search">
 			<input class="search__body__str-search__input" placeholder="Поиск в картотеке ..." />
@@ -12,51 +12,7 @@
 		<div class="search__body__btn-search">
 			<img src="assets/img/svg/search.svg" />
 		</div>
-		<div class="search__body__filter">Фильтры</div>
-	</div>
-</div>
-<div class="filter">
-	<div class="filter__body">
-		<div class="filter__body__close"><img width="20px" height="20px" src="assets/img/svg/close.svg" /></div>
-		<div class="filter__body__panel">
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head__filter">Фильтры</div>
-			</div>
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head">Категория сотрудника:</div>
-				<div class="filter__body__panel__section__body">
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">Только ИТР</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">Только Рабочие</div>
-					</div>
-				</div>
-			</div>
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head">Поиск по ... :</div>
-				<div class="filter__body__panel__section__body">
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По должности</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По специальности</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По названию программы</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По материальным ценностям</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="search__body__filter" (click)="WorkerProfileFilterBtn()">Фильтры</div>
 	</div>
 </div>
 <div class="content">
@@ -133,7 +89,7 @@
 									Дата рождения:
 								</div>
 								<div class="worker-profile__basic-info__content__container__employee-info__block__text">
-									28.10.1961г. (62 года)
+									28.10.1961г. (62 года)
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__employee-info__block">
@@ -180,3 +136,53 @@
 		</div>
 	</div>
 </div>
+
+<div class="filter" [@openClose]="conditionFilterBtn ? 'open' : 'closed'">
+	<div class="filter__body">
+		<div class="filter__body__close" (click)="WorkerProfileFilterBtn()">
+			<img width="20px" height="20px" src="assets/img/svg/close.svg" />
+		</div>
+		<div class="filter__body__panel">
+			<div class="filter__body__panel__section">
+				<div class="filter__body__panel__section__head__filter">Фильтры</div>
+			</div>
+			<div class="filter__body__panel__section">
+				<div class="filter__body__panel__section__head">Категория сотрудника:</div>
+				<div class="filter__body__panel__section__body">
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">Только ИТР</div>
+					</div>
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">Только Рабочие</div>
+					</div>
+				</div>
+			</div>
+			<div class="filter__body__panel__section">
+				<div class="filter__body__panel__section__head">Поиск по ... :</div>
+				<div class="filter__body__panel__section__body">
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">По должности</div>
+					</div>
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">По специальности</div>
+					</div>
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">По названию программы</div>
+					</div>
+					<div class="filter__body__panel__section__body__part">
+						<div class="filter__body__panel__section__body__part__checkbox"></div>
+						<div class="filter__body__panel__section__body__part__text">По материальным ценностям</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-popup [title]="'Добавление нового сотрудника'" [isOpen]="isModalOpen" (closeModalEvent)="closeModal()">
+	<app-add-worker-popup></app-add-worker-popup>
+</app-popup>
