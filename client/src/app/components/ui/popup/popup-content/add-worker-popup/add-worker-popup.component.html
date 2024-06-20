@@ -1,23 +1,154 @@
 <div class="body__popup">
 	<div class="body__popup__container">
 		<div class="body__popup__container__body">
-			<div class="body__popup__container__body__header">Welocome</div>
-			<div class="body__popup__container__body__content">lolo 1231 32123</div>
-			<br />
-			<div class="modal__container__body__content__section"></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
+			<!--<div class="body__popup__container__body__header">
+				<div class="body__popup__container__body__header__text"></div>
+			</div>-->
+			<div class="body__popup__container__body__content" [formGroup]="formAddWorker">
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<label class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+								Фио сотрудника
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main" [class.active-main]="inputFocusActive ? 1:0 ">
+								<input
+									type="text"
+									id="fio_worker"
+									formControlName="fio_worker"
+									class="body__popup__container__body__content__row__section__module__main__input"
+									placeholder="Соловьев Руслан Алексеевич"
+									(focus)="formColorFocus('event$')"
+									(blur)="formColorBlurs()"
+								/>
+							</div>
+						</label>
+					</div>
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+								Дата рождения
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main" [class.active-main]="inputFocusActive ? 1:0 ">
+								<input type="date" id="birthday_worker" formControlName="birthday_worker" class="body__popup__container__body__content__row__section__module__main__input" />
+							</div>
+						</div>
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+								Пол работника
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main-toggle" (click)="ToggleAddWorker() ">
+								<div class="body__popup__container__body__content__row__section__module__main-toggle__boy">Мужской</div>
+								<div class="body__popup__container__body__content__row__section__module__main-toggle__toggle">
+									<input
+										type="checkbox"
+										id="gender_worker"
+										formControlName="gender_worker"
+										name="gender"
+										class="body__popup__container__body__content__row__section__module__main-toggle__toggle__switch-btn__checkboxdell"
+										[checked]="isChecked"
+										value="{{isCheckedValue}}"
+									/>
+									<span class="body__popup__container__body__content__row__section__module__main-toggle__toggle__switch-btn" [class.switch-on]="isOpen"></span>
+								</div>
+								<div class="body__popup__container__body__content__row__section__module__main-toggle__girl">Женский</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Филиал
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="departments_worker" formControlName="departments_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Филиал" />
+							</div>
+						</div>
+					</div>
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Категория
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="categories_worker" formControlName="categories_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Категория" />
+							</div>
+						</div>
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Принят на работу
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="date" id="date_hiring_worker" formControlName="date_hiring_worker" class="body__popup__container__body__content__row__section__module__main__input" />
+							</div>
+						</div>
+					</div>
+				</div>
 
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-			<div class="div">111<br /></div>
-
-			<div class="body__popup__container__body__fotter">
-				<div class="body__popup__container__body__fotter__btn">btn</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Должность
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="positions_worker" formControlName="positions_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Должность сотрудника" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Разряд/квалификация
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="competency_worker" formControlName="competency_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Разряд 2" />
+							</div>
+						</div>
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Карта
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="positions_worker_card" formControlName="positions_worker_card" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Карта" />
+							</div>
+						</div>
+					</div>
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Загрузить фото
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="file" id="photo_worker" formControlName="photo_worker" class="body__popup__container__body__content__row__section__module__main__input" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__module">
+							<div class="body__popup__container__body__content__row__section__module__title">
+								Примечание
+							</div>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<textarea type="text" id="note_worker" formControlName="note_worker" class="body__popup__container__body__content__row__section__module__main__textarea" placeholder="Примечание"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="body__popup__container__body__footer">
+					<div class="body__popup__container__body__footer__btn__cancel">
+						<button class="body__popup__container__body__footer__btn__cancel__input">Отменить</button>
+					</div>
+					<div class="body__popup__container__body__footer__btn__submit">
+						<input type="submit" id="123" class="body__popup__container__body__footer__btn__submit__input" (click)="addWorker()" value="Добавить сотрудника" />
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

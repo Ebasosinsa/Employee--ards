@@ -19,6 +19,7 @@ import { WorkerProfileComponent } from './components/pages/workers/worker-profil
 import { WorkerProfilebtnService } from './service/worker-profilebtn.service';
 import { PopupComponent } from './components/ui/popup/popup.component';
 import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add-worker-popup/add-worker-popup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,12 @@ import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add
     PopupComponent,
     AddWorkerPopupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+  ],
   providers: [provideClientHydration(), WorkerProfilebtnService],
   bootstrap: [AppComponent],
 })

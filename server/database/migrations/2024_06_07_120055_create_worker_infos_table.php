@@ -18,6 +18,7 @@ class CreateWorkerInfosTable extends Migration
             $table->id('id_worker');                                            /*Ид работника   */
             $table->string('fio_worker');                                       /*ФИО сотрудника */
             $table->date('birthday_worker');                                    /*День рождения работника */
+            $table->boolean('gender_worker');                                    /*Пол работника */
 
             
             $table->unsignedBigInteger('departments_worker')->unsigned();       /*Филиал */

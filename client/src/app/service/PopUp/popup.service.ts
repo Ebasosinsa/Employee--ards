@@ -16,9 +16,11 @@ export class PopupService {
 
   openModal() {
     this.showModalSubject.next(true);
+    console.log(this.showModalSubject.value);
   }
 
   closeModal() {
     this.showModalSubject.next(false);
+    console.log(this.showModalSubject.value);
   }
 }
