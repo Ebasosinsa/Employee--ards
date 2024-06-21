@@ -20,6 +20,7 @@ import { WorkerProfilebtnService } from './service/worker-profilebtn.service';
 import { PopupComponent } from './components/ui/popup/popup.component';
 import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add-worker-popup/add-worker-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InputChangeColorDirective } from './components/directive/inputChangeColor/input-change-color.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     WorkerProfileComponent,
     PopupComponent,
     AddWorkerPopupComponent,
+    InputChangeColorDirective,
+
+    InputChangeColorDirective,
   ],
   imports: [
     BrowserModule,

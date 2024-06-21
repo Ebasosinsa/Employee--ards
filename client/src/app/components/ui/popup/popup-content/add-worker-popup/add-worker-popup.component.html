@@ -7,34 +7,26 @@
 			<div class="body__popup__container__body__content" [formGroup]="formAddWorker">
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<label class="body__popup__container__body__content__row__section__module">
-							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+						<label class="body__popup__container__body__content__row__section__module" for="fio_worker" appInputChangeColor>
+							<div class="body__popup__container__body__content__row__section__module__title">
 								Фио сотрудника
 							</div>
-							<div class="body__popup__container__body__content__row__section__module__main" [class.active-main]="inputFocusActive ? 1:0 ">
-								<input
-									type="text"
-									id="fio_worker"
-									formControlName="fio_worker"
-									class="body__popup__container__body__content__row__section__module__main__input"
-									placeholder="Соловьев Руслан Алексеевич"
-									(focus)="formColorFocus('event$')"
-									(blur)="formColorBlurs()"
-								/>
+							<div class="body__popup__container__body__content__row__section__module__main">
+								<input type="text" id="fio_worker" formControlName="fio_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Соловьев Руслан Алексеевич" />
 							</div>
 						</label>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
-							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
+							<div class="body__popup__container__body__content__row__section__module__title">
 								Дата рождения
 							</div>
-							<div class="body__popup__container__body__content__row__section__module__main" [class.active-main]="inputFocusActive ? 1:0 ">
+							<div class="body__popup__container__body__content__row__section__module__main">
 								<input type="date" id="birthday_worker" formControlName="birthday_worker" class="body__popup__container__body__content__row__section__module__main__input" />
 							</div>
 						</div>
 						<div class="body__popup__container__body__content__row__section__module">
-							<div class="body__popup__container__body__content__row__section__module__title" [class.active-title]="inputFocusActive ? 1:0 ">
+							<div class="body__popup__container__body__content__row__section__module__title">
 								Пол работника
 							</div>
 							<div class="body__popup__container__body__content__row__section__module__main-toggle" (click)="ToggleAddWorker() ">
@@ -58,7 +50,7 @@
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Филиал
 							</div>
@@ -68,7 +60,7 @@
 						</div>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Категория
 							</div>
@@ -76,7 +68,7 @@
 								<input type="text" id="categories_worker" formControlName="categories_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Категория" />
 							</div>
 						</div>
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Принят на работу
 							</div>
@@ -89,7 +81,7 @@
 
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Должность
 							</div>
@@ -101,7 +93,7 @@
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Разряд/квалификация
 							</div>
@@ -109,7 +101,7 @@
 								<input type="text" id="competency_worker" formControlName="competency_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Разряд 2" />
 							</div>
 						</div>
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Карта
 							</div>
@@ -131,12 +123,12 @@
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
+						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Примечание
 							</div>
 							<div class="body__popup__container__body__content__row__section__module__main">
-								<textarea type="text" id="note_worker" formControlName="note_worker" class="body__popup__container__body__content__row__section__module__main__textarea" placeholder="Примечание"></textarea>
+								<textarea type="text" id="note_worker" formControlName="note_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Примечание"></textarea>
 							</div>
 						</div>
 					</div>

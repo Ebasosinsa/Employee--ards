@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { InputChangeColorDirective } from '../../../../directive/inputChangeColor/input-change-color.directive';
 
 @Component({
   selector: 'app-add-worker-popup',
@@ -7,7 +8,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './add-worker-popup.component.scss',
 })
 export class AddWorkerPopupComponent {
-  [x: string]: any;
   isOpen: boolean = false;
   isChecked: boolean = false;
   isCheckedValue: number = 0;
@@ -45,15 +45,15 @@ export class AddWorkerPopupComponent {
     console.log(this.formAddWorker.get(['gender_worker'])?.value);
     this.isOpen = !this.isOpen;
   }
-
-  formColorFocus(ev: any = this.ev): void {
-    console.log('focus', this.ev);
+  /*(focus)="formColorFocus($event.target)" (blur)="formColorBlurs($event.target)"
+  formColorFocus(element: any): void {
+    console.log('focus', element);
     this.inputFocusActive = true;
   }
   formColorBlurs(eve: any = this.eve): void {
     console.log('blurs', this.eve);
     this.inputFocusActive = false;
-  }
+  }*/
   public addWorker() {
     if (this.formAddWorker.valid) {
       console.log(this.formAddWorker.value);
