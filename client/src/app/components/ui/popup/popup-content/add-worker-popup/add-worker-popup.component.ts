@@ -1,6 +1,12 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InputChangeColorDirective } from '../../../../directive/inputChangeColor/input-change-color.directive';
+import { WorkerCategoryService } from '../../../../../service/WorkerCategory/worker-category.service';
+import { workercategory } from '../../../../../models/workercategory';
+import { WorkerDepartmentService } from '../../../../../service/WorkerDepartment/worker-department.service';
+import { workerdepartment } from '../../../../../models/workerdepartment';
+import { WorkerInfoService } from '../../../../../service/WorkerInfo/worker-info.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-worker-popup',
@@ -8,11 +14,7 @@ import { InputChangeColorDirective } from '../../../../directive/inputChangeColo
   styleUrl: './add-worker-popup.component.scss',
 })
 export class AddWorkerPopupComponent {
-  isOpen: boolean = false;
-  isChecked: boolean = false;
-  isCheckedValue: number = 0;
-  inputFocusActive: boolean = false;
-
+  /* Публичные свойства */
   formAddWorker = new FormGroup({
     fio_worker: new FormControl('', Validators.required),
     birthday_worker: new FormControl('', Validators.required),
@@ -26,8 +28,58 @@ export class AddWorkerPopupComponent {
     photo_worker: new FormControl(''),
     note_worker: new FormControl(''),
   });
-  ev: any;
-  eve: any;
+
+  category: workercategory;
+  department: workerdepartment;
+
+  id: number;
+
+  profile: workerinfo;
+
+  constructor(
+    private categoryService: WorkerCategoryService,
+    private departmentService: WorkerDepartmentService,
+    private profileService: WorkerInfoService,
+
+    private router: Router /*private activateRoute: ActivatedRoute*/
+  ) {
+    this.profile = {
+      id_worker: 0,
+      fio_worker: '',
+      birthday_worker: '',
+      departments_worker: 0,
+      positions_worker: 0,
+      competency_worker: '',
+      categories_worker: 0,
+      date_hiring_worker: '',
+      date_layoff_worker: '',
+      note_worker: '',
+      add_date_worker: '',
+      photo_worker: '',
+    };
+  }
+
+  ngOnInit(): void {
+    this.getDepartment();
+    this.getCategory();
+  }
+
+  getDepartment() {
+    this.departmentService.getDepartment().subscribe((data) => {
+      this.department = data;
+    });
+  }
+
+  getCategory() {
+    this.categoryService.getCategory().subscribe((data) => {
+      this.category = data;
+    });
+  }
+
+  isOpen: boolean = false;
+  isChecked: boolean = false;
+  isCheckedValue: number = 0;
+  inputFocusActive: boolean = false;
 
   /*inputFocus(event: any): void {
     console.log(event.target);
@@ -59,7 +111,6 @@ export class AddWorkerPopupComponent {
       console.log(this.formAddWorker.value);
     } else {
       console.log('Ne valid');
-      console.log(this.formAddWorker.get(['gender_worker'])?.value);
       this.formAddWorker.get('gender_worker')?.setValue('true');
     }
   }
