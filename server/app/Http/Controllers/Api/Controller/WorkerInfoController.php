@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Controller;
 
+use App\Services\WorkerInfo\WorkerInfoService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

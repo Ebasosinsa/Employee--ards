@@ -4,6 +4,7 @@ import { WorkersComponent } from './components/pages/workers/workers.component';
 import { SelectionComponent } from './components/pages/selection/selection.component';
 import { ToolkitComponent } from './components/pages/toolkit/toolkit.component';
 import { WorkerProfileComponent } from './components/pages/workers/worker-profile/worker-profile.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   /* Главная страница картотеки */
@@ -31,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

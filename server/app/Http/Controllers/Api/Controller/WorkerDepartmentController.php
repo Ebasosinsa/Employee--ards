@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api\Controller;
 
+use App\Services\Response\ResponseService;
+use App\Services\WorkerDepartment\WorkerDepartmentService;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

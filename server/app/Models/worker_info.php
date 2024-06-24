@@ -10,7 +10,7 @@ class worker_info extends Model
     use HasFactory;
 
     public function worker_departments(){
-        return $this->belongsTo(Worker_departments::class);
+        return $this->belongsTo(Worker_department::class);
     }
 
     public function worker_category(){

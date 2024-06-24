@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('WorkerInfo', 'Api\WorkerInfoController');
-Route::resource('WorkerDepartment', 'Api\WorkerDepartmentController');
-Route::resource('WorkerCategory', 'Api\WorkerCategoryController');
+Route::resource('workerinfo', 'Api\WorkerInfoController');
+Route::resource('department', 'Api\WorkerDepartmentController');
+Route::resource('workercategory', 'Api\WorkerCategoryController');

@@ -6,7 +6,8 @@ import { workercategory } from '../../../../../models/workercategory';
 import { WorkerDepartmentService } from '../../../../../service/WorkerDepartment/worker-department.service';
 import { workerdepartment } from '../../../../../models/workerdepartment';
 import { WorkerInfoService } from '../../../../../service/WorkerInfo/worker-info.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { workerinfo } from '../../../../../models/workerinfo';
 
 @Component({
   selector: 'app-add-worker-popup',
@@ -29,8 +30,8 @@ export class AddWorkerPopupComponent {
     note_worker: new FormControl(''),
   });
 
-  category: workercategory;
-  department: workerdepartment;
+  category: workercategory[];
+  department: workerdepartment[];
 
   id: number;
 
@@ -41,7 +42,8 @@ export class AddWorkerPopupComponent {
     private departmentService: WorkerDepartmentService,
     private profileService: WorkerInfoService,
 
-    private router: Router /*private activateRoute: ActivatedRoute*/
+    private router: Router,
+    private activateRoute: ActivatedRoute
   ) {
     this.profile = {
       id_worker: 0,

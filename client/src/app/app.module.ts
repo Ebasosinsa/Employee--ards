@@ -21,7 +21,12 @@ import { PopupComponent } from './components/ui/popup/popup.component';
 import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add-worker-popup/add-worker-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputChangeColorDirective } from './components/directive/inputChangeColor/input-change-color.directive';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [provideClientHydration(), WorkerProfilebtnService],
+  providers: [
+    provideHttpClient(withFetch()),
+    provideClientHydration(),
+    WorkerProfilebtnService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
