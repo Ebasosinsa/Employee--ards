@@ -1,10 +1,10 @@
 <?php
-/* Миграция таблицы Категории сотрудников */
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkerCategoriesTable extends Migration
+class CreateWorkerDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateWorkerCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('worker_categories', function (Blueprint $table) {
-
-            $table->id('id_categories');
-            $table->string('name_categories');
-            
+        Schema::create('worker_departments', function (Blueprint $table) {
+            $table->id('id_departments');
+            $table->string('name_departments');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateWorkerCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worker_categories');
+        Schema::dropIfExists('worker_departments');
     }
 }

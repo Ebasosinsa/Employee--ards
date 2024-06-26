@@ -15,7 +15,7 @@ class AddCategories extends Seeder
     public function run()
     {
         //Сид добавления записей для Категории сотрудников
-        DB::table('worker_categories')->insert([
+        DB::table('worker_caregories')->insert([
             [
                 'name_categories' => "ИТР",
             ],

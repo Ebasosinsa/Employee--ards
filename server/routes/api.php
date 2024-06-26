@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::resource('workerinfo', 'Api\WorkerInfoController');
-Route::resource('department', 'Api\WorkerDepartmentController');
-Route::resource('workercategory', 'Api\WorkerCategoryController');
+Route::get('/api/workerinfo', 'Api\ApiCategory@index');
+Route::resource('/api/workercategory', 'Api\ApiCategory');
+Route::resource('/api/workerdepartment', 'Api\ApiDepartment');

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\Controller;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+
 class ApiController extends Controller
 {
-    //
     protected $service;
 }

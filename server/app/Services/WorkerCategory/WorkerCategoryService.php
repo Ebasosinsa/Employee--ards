@@ -1,13 +1,10 @@
 <?php
-/* Сервис категорий рабочих */ 
 
 namespace App\Services\WorkerCategory;
-use App\Models\worker_category;
+use App\Models\WorkerCaregory;
 
-class WorkerCategoryService { 
-
+class WorkerCategoryService{
   public function getItems(){
-    return worker_category::all();
+      return WorkerCaregory::all();
   }
-
 }

@@ -42,8 +42,6 @@ import { provideRouter } from '@angular/router';
     PopupComponent,
     AddWorkerPopupComponent,
     InputChangeColorDirective,
-
-    InputChangeColorDirective,
   ],
   imports: [
     BrowserModule,
