@@ -1,29 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { workergtpositions } from '../../models/workergtpositions';
+import { ResponseHttp } from '../../models/responseHttp';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
-import { workercategory } from '../../models/workercategory';
-import { ResponseHttp } from '../../models/responseHttp';
-
 @Injectable({
   providedIn: 'root',
 })
-export class WorkerCategoryService {
-  constructor(private http: HttpClient) {}
-
+export class WorkerGtPositionsService {
   confgapiUrl = 'http://127.0.0.1:8000';
 
-  getCategory(): Observable<workercategory[]> {
+  constructor(private http: HttpClient) {}
+
+  getGtPositions(): Observable<workergtpositions[]> {
     return this.http
       .get<ResponseHttp>(
-        this.confgapiUrl + '/api/workercategory' /*this.confgapiUrl*/
+        this.confgapiUrl + '/api/workergtpositions' /*this.confgapiUrl*/
       )
       .pipe(
         map((data) => {
-          console.log('return11111111111', data.data.items);
-          return data.data.items as any;
+          console.log('return', data);
+          return data as any;
         }),
         catchError((error: any) => {
           return throwError(() => new Error(error));

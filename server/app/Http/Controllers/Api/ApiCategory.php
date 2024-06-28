@@ -15,22 +15,23 @@ public function __construct(WorkerCategoryService $service)
 {
     $this->service = $service;
 }
-    /*public function index(){
+    public function index(){
         $category = $this->service->getItems()->toJson();
-        /*return ResponseService::sendJsonResponse (
-            true,
+        return ResponseService::sendJsonResponse (
             [
                 'items' => $this->service->getItems()->toArray()
-                'items' => $category,
-            ], 333, 'rebota'
+            ]
 
         );
-        return $category;*/
-
-    public function index(){
-        $category = WorkerCaregory::all()->toJson();
+        return $category;
+    }
+    //public function index(){
+      //  $category = /*WorkerCaregory::all()->toJson();*/
+     /*   [
+            'items' => $this->service->getItems()->toArray()
+        ];
         return ($category);
     
-    }
+    }*/
 }
 

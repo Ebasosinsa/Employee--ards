@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/api/workerinfo', 'Api\ApiCategory@index');
-Route::resource('/api/workercategory', 'Api\ApiCategory');
-Route::resource('/api/workerdepartment', 'Api\ApiDepartment');
+
+
+Route::middleware('api')->group( function () {
+  Route::resource('workercategory', 'Api\ApiCategory');
+  Route::resource('workerdepartment', 'Api\ApiDepartment');
+  Route::resource('workergtpositions', 'Api\ApiGtWorkerPosition');
+
+});

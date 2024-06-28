@@ -24,7 +24,6 @@ class CreateWorkerInfosTable extends Migration
             $table->foreign('departments_worker')->references('id_departments')->on('worker_departments');
 
             $table->unsignedBigInteger('positions_worker')->unsigned();         /*Должность сотрудника */
-            $table->foreign('positions_worker')->references('id_positions')->on('worker_positions');
 
             $table->string('competency_worker');                                /*Разряд сотрудника */                 
 

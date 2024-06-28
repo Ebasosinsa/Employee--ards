@@ -49,25 +49,61 @@
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
-					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Филиал
+					<div class="body__popup__container__body__content__row__section-no-grid">
+						<div class="body__popup__container__body__content__row__section-no-grid__module" appDropDownMenu>
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title">
+									Филиал
+								</div>
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body">
+									<input type="text" id="departments_worker" formControlName="departments_worker" class="body__popup__container__body__content__row__section-no-grid__module__main__body__input" autocomplete="off" placeholder="Филиал" />
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret">
+										<svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</div>
+								</div>
 							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="departments_worker" formControlName="departments_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Филиал" />
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row" id="{{ department.id_departments }}" *ngFor="let department of departments">
+										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ department.name_departments }}</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
+						<div class="body__popup__container__body__content__row__section-no-grid__module" appDropDownMenu>
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title">
+									Категория
+								</div>
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body">
+									<input type="text" id="categories_worker" formControlName="categories_worker" class="body__popup__container__body__content__row__section-no-grid__module__main__body__input" autocomplete="off" placeholder="Категория" />
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret">
+										<svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row" id="{{ categoriy.id_categories}}" *ngFor="let categoriy of categories">
+										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ categoriy.name_categories }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Категория
 							</div>
 							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="categories_worker" formControlName="categories_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Категория" />
+								<input type="text" id="categories_worker" formControlName="categories_worker" placeholder="Категория" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Категория" />
 							</div>
-						</div>
+						</div>-->
 						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Принят на работу
@@ -80,13 +116,37 @@
 				</div>
 
 				<div class="body__popup__container__body__content__row">
-					<div class="body__popup__container__body__content__row__section">
+					<!--<div class="body__popup__container__body__content__row__section">
 						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Должность
 							</div>
 							<div class="body__popup__container__body__content__row__section__module__main">
 								<input type="text" id="positions_worker" formControlName="positions_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Должность сотрудника" />
+							</div>
+						</div>
+					</div>-->
+					<div class="body__popup__container__body__content__row__section-no-grid">
+						<div class="body__popup__container__body__content__row__section-no-grid__module" appDropDownMenu>
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title">
+									Должность
+								</div>
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body">
+									<input type="text" id="positions_worker" formControlName="positions_worker" class="body__popup__container__body__content__row__section-no-grid__module__main__body__input" autocomplete="off" placeholder="Должность" />
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret">
+										<svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown">
+								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
+									<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row" id="{{ gtposition.id_gt_worker_positions }}" *ngFor="let gtposition of gtpositions">
+										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ gtposition.name_gt_worker_positions }}</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

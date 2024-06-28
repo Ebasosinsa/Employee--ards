@@ -21,6 +21,7 @@ import { PopupComponent } from './components/ui/popup/popup.component';
 import { AddWorkerPopupComponent } from './components/ui/popup/popup-content/add-worker-popup/add-worker-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputChangeColorDirective } from './components/directive/inputChangeColor/input-change-color.directive';
+import { InputDropDownMenuDirective } from './components/directive/inputDropDownMenu/input-drop-down-menu';
 import {
   HttpClientModule,
   provideHttpClient,
@@ -42,6 +43,7 @@ import { provideRouter } from '@angular/router';
     PopupComponent,
     AddWorkerPopupComponent,
     InputChangeColorDirective,
+    InputDropDownMenuDirective,
   ],
   imports: [
     BrowserModule,

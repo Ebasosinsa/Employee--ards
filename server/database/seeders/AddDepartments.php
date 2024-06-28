@@ -23,6 +23,11 @@ class AddDepartments extends Seeder
             [
                 'name_departments' => "ООО «Арктик-Флот»",
             ]
+            ,
+
+            [
+                'name_departments' => "ООО \"ЭТЦ\"АЛЬФА\"",
+            ]
         ]);
     }
 }

@@ -8,6 +8,8 @@ import { workerdepartment } from '../../../../../models/workerdepartment';
 import { WorkerInfoService } from '../../../../../service/WorkerInfo/worker-info.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { workerinfo } from '../../../../../models/workerinfo';
+import { WorkerGtPositionsService } from '../../../../../service/WorkerGtPositions/worker-gt-positions.service';
+import { workergtpositions } from '../../../../../models/workergtpositions';
 
 @Component({
   selector: 'app-add-worker-popup',
@@ -30,8 +32,10 @@ export class AddWorkerPopupComponent {
     note_worker: new FormControl(''),
   });
 
-  category: workercategory[];
-  department: workerdepartment[];
+  categories!: workercategory[];
+  departments!: workerdepartment[];
+  gtpositions!: workergtpositions[];
+  cett: any[];
 
   id: number;
 
@@ -40,6 +44,7 @@ export class AddWorkerPopupComponent {
   constructor(
     private categoryService: WorkerCategoryService,
     private departmentService: WorkerDepartmentService,
+    private workergtpositionsService: WorkerGtPositionsService,
     private profileService: WorkerInfoService,
 
     private router: Router,
@@ -64,17 +69,29 @@ export class AddWorkerPopupComponent {
   ngOnInit(): void {
     this.getDepartment();
     this.getCategory();
+    this.getGtPositions();
   }
 
   getDepartment() {
     this.departmentService.getDepartment().subscribe((data) => {
-      this.department = data;
+      this.departments = data;
+      console.log(this.departments);
+      console.log(this.departments[1]);
+      console.log(data[0].id_departments);
     });
   }
 
   getCategory() {
     this.categoryService.getCategory().subscribe((data) => {
-      this.category = data;
+      this.categories = data;
+      console.log(this.categories[1]);
+      console.log(data[0].id_categories);
+    });
+  }
+
+  getGtPositions() {
+    this.workergtpositionsService.getGtPositions().subscribe((data) => {
+      this.gtpositions = data;
     });
   }
 
@@ -113,6 +130,8 @@ export class AddWorkerPopupComponent {
       console.log(this.formAddWorker.value);
     } else {
       console.log('Ne valid');
+      this.cett = this.categories;
+      console.log(this.cett);
       this.formAddWorker.get('gender_worker')?.setValue('true');
     }
   }

@@ -1,5 +1,7 @@
 export interface ResponseHttp {
   status: boolean;
   errors: {};
-  data: {};
+  data: {
+    items: any[];
+  };
 }

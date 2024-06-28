@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/api/workerdepartment', 'Api\ApiDepartment@index');
-Route::get('/api/workercategory', 'Api\ApiCategory@index');
+//Route::get('/api/workerdepartment', 'Api\ApiDepartment@index');
+//Route::get('/api/workercategory', 'Api\ApiCategory@index');

@@ -1,4 +1,4 @@
 export interface workerdepartment {
-  id_department: number;
-  name_department: string;
+  id_departments: number;
+  name_departments: string;
 }

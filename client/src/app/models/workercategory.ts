@@ -1,4 +1,4 @@
 export interface workercategory {
-  id_category: number;
-  name_category: string;
+  id_categories: number;
+  name_categories: string;
 }
