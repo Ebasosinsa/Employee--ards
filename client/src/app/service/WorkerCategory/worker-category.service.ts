@@ -13,12 +13,12 @@ import { ResponseHttp } from '../../models/responseHttp';
 export class WorkerCategoryService {
   constructor(private http: HttpClient) {}
 
-  confgapiUrl = 'http://127.0.0.1:8000';
+  apiUrl = 'http://127.0.0.1:8000';
 
   getCategory(): Observable<workercategory[]> {
     return this.http
       .get<ResponseHttp>(
-        this.confgapiUrl + '/api/workercategory' /*this.confgapiUrl*/
+        this.apiUrl + '/api/workercategory' /*this.confgapiUrl*/
       )
       .pipe(
         map((data) => {

@@ -10,14 +10,14 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class WorkerGtPositionsService {
-  confgapiUrl = 'http://127.0.0.1:8000';
+  apiUrl = 'http://127.0.0.1:8000';
 
   constructor(private http: HttpClient) {}
 
   getGtPositions(): Observable<workergtpositions[]> {
     return this.http
       .get<ResponseHttp>(
-        this.confgapiUrl + '/api/workergtpositions' /*this.confgapiUrl*/
+        this.apiUrl + '/api/workergtpositions' /*this.confgapiUrl*/
       )
       .pipe(
         map((data) => {

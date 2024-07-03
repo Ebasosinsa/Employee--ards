@@ -10,14 +10,14 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class WorkerDepartmentService {
-  confgapiUrl = 'http://127.0.0.1:8000';
+  apiUrl = 'http://127.0.0.1:8000';
 
   constructor(private http: HttpClient) {}
 
   getDepartment(): Observable<workerdepartment[]> {
     return this.http
       .get<ResponseHttp>(
-        this.confgapiUrl + '/api/workerdepartment' /*this.confgapiUrl*/
+        this.apiUrl + '/api/workerdepartment' /*this.confgapiUrl*/
       )
       .pipe(
         map((data) => {
