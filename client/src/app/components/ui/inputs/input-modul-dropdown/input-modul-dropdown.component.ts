@@ -16,7 +16,6 @@ import { WorkerGtPositionsService } from '../../../../service/WorkerGtPositions/
 import { WorkerCategoryService } from '../../../../service/WorkerCategory/worker-category.service';
 import { WorkerDepartmentService } from '../../../../service/WorkerDepartment/worker-department.service';
 import { DataFilterService } from '../../../../service/Data-filter/data-filter.service';
-import { inputArr } from '../../../../models/inputArr';
 import { debounceTime } from 'rxjs/operators';
 import { SharingAddFormService } from '../../../../service/sharingAddForm/sharing-add-form.service';
 
@@ -40,7 +39,9 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
   @Input() pholder: string;
   @Input() inputid: string;
   @Input() forid: string;
-  @Input() options: [];
+  @Input() options: any[];
+  @Input() optionsid: any;
+  @Input() optionsname: any;
 
   inputArrFiltereds: any;
 
@@ -60,6 +61,7 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
   selectedValue: [];
+  aye123: any;
 
   constructor(
     private readonly changeDetector: ChangeDetectorRef,
@@ -118,10 +120,7 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
     });
   }*/
 
-  public filteringArr() {
-    this.selectedValue = this.options;
-    console.log(this.selectedValue);
-  }
+  public filteringArr() {}
   addValue(inputValue: string): void {
     this.writeValue(inputValue);
   }

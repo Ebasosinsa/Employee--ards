@@ -38,7 +38,17 @@
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<!--Филиал-->
-					<app-input-modul-dropdown [formControlName]="'departments_worker'" [options]="dropdownOptions" forid="departments_worker" inputid="departments_worker" title="Филиал" type="text" pholder="Филиал"></app-input-modul-dropdown>
+					<app-input-modul-dropdown
+						[formControlName]="'departments_worker'"
+						[options]="gtpositions"
+						[optionsid]="'id_gt_worker_positions'"
+						[optionsname]="'inputArrFiltered.name_gt_worker_positions'"
+						forid="departments_worker"
+						inputid="departments_worker"
+						title="Филиал"
+						type="text"
+						pholder="Филиал"
+					></app-input-modul-dropdown>
 					<!--<div class="body__popup__container__body__content__row__section-no-grid">
 						<div class="body__popup__container__body__content__row__section-no-grid__module">
 							<div class="body__popup__container__body__content__row__section-no-grid__module__main">

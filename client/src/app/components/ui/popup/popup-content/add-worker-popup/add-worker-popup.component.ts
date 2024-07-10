@@ -1,5 +1,10 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { WorkerCategoryService } from '../../../../../service/WorkerCategory/worker-category.service';
 import { workercategory } from '../../../../../models/workercategory';
 import { WorkerDepartmentService } from '../../../../../service/WorkerDepartment/worker-department.service';
@@ -122,6 +127,7 @@ export class AddWorkerPopupComponent {
     this.workergtpositionsService.getGtPositions().subscribe((data) => {
       this.gtpositions = data;
       this.gtpositionscolums = 'name_gt_worker_positions';
+
       /*this.filterPositions = this.gtpositions;
       console.log('filterPosition', this.filterPositions);*/
     });

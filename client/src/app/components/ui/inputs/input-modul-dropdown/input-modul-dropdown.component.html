@@ -26,14 +26,8 @@
 	</div>
 	<div class="body__main__dropdown" [class.show]="isShowed">
 		<div class="body__main__dropdown__body">
-			<div
-				class="body__main__dropdown__body__row"
-				name="positions_worker_dropdownrow"
-				id="{{inputArrFiltered.id_gt_worker_positions}}"
-				*ngFor="let inputArrFiltered of inputArrFiltereds"
-				(click)="addValue(inputArrFiltered.name_gt_worker_positions); isShowed=false"
-			>
-				<div class="body__main__dropdown__body__row__text">{{inputArrFiltered.name_gt_worker_positions}}</div>
+			<div class="body__main__dropdown__body__row" name="positions_worker_dropdownrow" id="{{inputArrFiltered.optionsid}}" *ngFor="let inputArrFiltered of options" (click)="addValue(inputArrFiltered.optionsname); isShowed=false">
+				<div class="body__main__dropdown__body__row__text">{{aye123}}</div>
 			</div>
 		</div>
 	</div>
