@@ -1,0 +1,40 @@
+<label class="body" for="{{forid}}">
+	<div class="body__main">
+		<div class="body__main__title" [class.show]="isShowed">
+			{{title}}
+		</div>
+		<div class="body__main__body" [class.show]="isShowed">
+			<input
+				#myInputDropDown
+				type="{{type}}"
+				id="{{inputid}}"
+				class="body__main__body__input"
+				autocomplete="off"
+				[value]="value"
+				placeholder="{{pholder}}"
+				(input)="onInputValueChange($event)"
+				(click)="toggleActive()"
+				(blur)="isShowed=false"
+				(keyup)="filteringArr()"
+			/><!--(keyup)="filteringArr()"-->
+			<div class="body__main__body__caret" [class.show]="isShowed">
+				<svg id="positions_worker_carret" class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="body__main__dropdown" [class.show]="isShowed">
+		<div class="body__main__dropdown__body">
+			<div
+				class="body__main__dropdown__body__row"
+				name="positions_worker_dropdownrow"
+				id="{{inputArrFiltered.id_gt_worker_positions}}"
+				*ngFor="let inputArrFiltered of inputArrFiltereds"
+				(click)="addValue(inputArrFiltered.name_gt_worker_positions); isShowed=false"
+			>
+				<div class="body__main__dropdown__body__row__text">{{inputArrFiltered.name_gt_worker_positions}}</div>
+			</div>
+		</div>
+	</div>
+</label>

@@ -7,24 +7,12 @@
 			<div class="body__popup__container__body__content" [formGroup]="formAddWorker">
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<label class="body__popup__container__body__content__row__section__module" for="fio_worker" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Фио сотрудника
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="fio_worker" formControlName="fio_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Соловьев Руслан Алексеевич" />
-							</div>
-						</label>
+						<!--Фио Сотрудника-->
+						<app-input-modul-simple [formControlName]="'fio_worker'" forid="fio_worker" inputid="fio_worker" title="Фио Сотрудника" type="text" pholder="Соловьев Руслан Алексеевич"></app-input-modul-simple>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Дата рождения
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="date" id="birthday_worker" formControlName="birthday_worker" class="body__popup__container__body__content__row__section__module__main__input" />
-							</div>
-						</div>
+						<!--Дата рождения-->
+						<app-input-modul-simple [formControlName]="'birthday_worker'" forid="birthday_worker" inputid="birthday_worker" title="Дата рождения" type="date" pholder=""></app-input-modul-simple>
 						<div class="body__popup__container__body__content__row__section__module">
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Пол работника
@@ -49,7 +37,9 @@
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
-					<div class="body__popup__container__body__content__row__section-no-grid">
+					<!--Филиал-->
+					<app-input-modul-dropdown [formControlName]="'departments_worker'" [options]="dropdownOptions" forid="departments_worker" inputid="departments_worker" title="Филиал" type="text" pholder="Филиал"></app-input-modul-dropdown>
+					<!--<div class="body__popup__container__body__content__row__section-no-grid">
 						<div class="body__popup__container__body__content__row__section-no-grid__module">
 							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
 								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title" [class.show]="isModuleShowed && 'departments_worker' === targetElement">
@@ -72,7 +62,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 					<div class="body__popup__container__body__content__row__section">
 						<div class="body__popup__container__body__content__row__section-no-grid__module" appDropDownMenu>
 							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
@@ -96,108 +86,32 @@
 								</div>
 							</div>
 						</div>
-						<!--<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Категория
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="categories_worker" formControlName="categories_worker" placeholder="Категория" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Категория" />
-							</div>
-						</div>-->
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Принят на работу
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="date" id="date_hiring_worker" formControlName="date_hiring_worker" class="body__popup__container__body__content__row__section__module__main__input" />
-							</div>
-						</div>
+						<!--Принят на работу-->
+						<app-input-modul-simple [formControlName]="'date_hiring_worker'" forid="date_hiring_worker" inputid="date_hiring_worker" title="Принят на работу" type="date" pholder=""></app-input-modul-simple>
 					</div>
 				</div>
 
 				<div class="body__popup__container__body__content__row">
-					<!--<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Должность
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="positions_worker" formControlName="positions_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Должность сотрудника" />
-							</div>
-						</div>
-					</div>-->
 					<div class="body__popup__container__body__content__row__section-no-grid">
-						<div class="body__popup__container__body__content__row__section-no-grid__module">
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main" (click)="toggleShowModule($event.target); preventCloseOnClick()">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title" [class.show]="isModuleShowed && 'positions_worker' === targetElement">
-									Должность
-								</div>
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body" [class.show]="isModuleShowed">
-									<input
-										#myInputPosition
-										type="text"
-										id="positions_worker"
-										formControlName="positions_worker"
-										class="body__popup__container__body__content__row__section-no-grid__module__main__body__input"
-										autocomplete="off"
-										placeholder="Должность"
-										(keyup)="filteringArr()"
-									/>
-									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret" [class.show]="isModuleShowed">
-										<svg id="positions_worker_carret" class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-										</svg>
-									</div>
-								</div>
-							</div>
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown" [class.show]="isModuleShowed">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
-									<div
-										class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row"
-										name="positions_worker_dropdownrow"
-										id="{{ gtposition.id_gt_worker_positions }}"
-										*ngFor="let gtposition of filterPositions"
-										(click)="addValue(gtposition.name_gt_worker_positions)"
-									>
-										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ gtposition.name_gt_worker_positions }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<!--Должность-->
+						<app-input-modul-dropdown [formControlName]="'positions_worker'" forid="positions_worker" inputid="positions_worker" title="Должность" type="text" pholder="Должность"></app-input-modul-dropdown>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Разряд/квалификация
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="competency_worker" formControlName="competency_worker" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Разряд 2" />
-							</div>
-						</div>
-						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Карта
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="text" id="positions_worker_card" formControlName="positions_worker_card" class="body__popup__container__body__content__row__section__module__main__input" placeholder="Карта" />
-							</div>
-						</div>
+						<!--Разряд/квалификация-->
+						<app-input-modul-simple [formControlName]="'competency_worker'" forid="competency_worker" inputid="competency_worker" title="Разряд/квалификация" type="text" pholder="Разряд/квалификация"></app-input-modul-simple>
+						<!--Карта-->
+						<app-input-modul-simple [formControlName]="'positions_worker_card'" forid="positions_worker_card" inputid="positions_worker_card" title="Карта" type="text" pholder="Карта"></app-input-modul-simple>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section__module">
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Загрузить фото
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main">
-								<input type="file" id="photo_worker" formControlName="photo_worker" class="body__popup__container__body__content__row__section__module__main__input" />
-							</div>
-						</div>
+						<!--Загрузить фото-->
+						<app-input-modul-simple [formControlName]="'photo_worker'" forid="photo_workerd" inputid="photo_worker" title="Загрузить фото" type="file" pholder=""></app-input-modul-simple>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
+						<!--Примечание-->
 						<div class="body__popup__container__body__content__row__section__module" appInputChangeColor>
 							<div class="body__popup__container__body__content__row__section__module__title">
 								Примечание
@@ -218,5 +132,6 @@
 				</div>
 			</div>
 		</div>
+		{{formAddWorker.value | json}}
 	</div>
 </div>

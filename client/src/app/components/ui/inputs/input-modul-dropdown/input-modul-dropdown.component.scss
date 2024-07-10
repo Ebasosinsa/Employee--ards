@@ -1,0 +1,124 @@
+.body {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.body__main {
+}
+
+.body__main__title {
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  line-height: 1.5;
+  height: 20px;
+  /*padding: 10px 20px 0px 20px;*/
+  padding-left: 10px;
+  transition: 0.3s;
+}
+
+.body__main__title.show {
+  color: #0766a5;
+}
+
+.body__main__body {
+  position: relative;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  transition: border 0.4s;
+  padding: 5px 10px 5px 10px;
+  border-radius: 0px;
+  transition: 0.3s;
+  display: grid;
+  grid-template-columns: 1fr 35px;
+}
+
+.body__main__body.show {
+  border: 1px Solid #0766a5;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.body__main__body__input {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  max-height: 50px;
+  min-height: 35px;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18px;
+  line-height: 1.5;
+  /*padding: 26px 0px 14px 20px;*/
+
+  border: 0px solid #2f66ff;
+  outline: none;
+  transition: font-size 0.4s;
+}
+
+.body__main__body__caret {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+}
+
+.body__main__body__caret.show {
+  transform: rotate(0deg);
+}
+
+.body__main__dropdown {
+  background-color: #fff;
+  z-index: 10;
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
+.body__main__dropdown.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.body__main__dropdown__body {
+  max-height: 140px;
+  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
+  border-left: 1px Solid rgba(0, 0, 0, 0.15);
+  border-right: 1px Solid rgba(0, 0, 0, 0.15);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.body__main__dropdown__body__row {
+  position: relative;
+  display: block;
+  padding: 5px 10px 5px 10px;
+  max-width: 100%;
+  max-height: 40px;
+  border-bottom: 1px Solid rgba(0, 0, 0, 0.15);
+}
+
+.body__main__dropdown__body__row:hover {
+  background-color: rgba(0, 133, 255, 0.1);
+}
+
+.body__main__dropdown__body__row__text {
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 16px;
+  line-height: 1.5;
+  padding-left: 2px;
+}

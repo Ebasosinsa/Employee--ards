@@ -11,6 +11,8 @@ import { environment } from '../../../environments/environment';
 })
 export class WorkerGtPositionsService {
   apiUrl = 'http://127.0.0.1:8000';
+  inputValue: string;
+  filteredArray: workergtpositions[];
 
   constructor(private http: HttpClient) {}
 
@@ -18,6 +20,27 @@ export class WorkerGtPositionsService {
     return this.http
       .get<ResponseHttp>(
         this.apiUrl + '/api/workergtpositions' /*this.confgapiUrl*/
+      )
+      .pipe(
+        map((data) => {
+          console.log('return', data);
+          return data as any;
+        }),
+        catchError((error: any) => {
+          return throwError(() => new Error(error));
+        })
+      );
+  }
+
+  filterGtPositions(inputValue: any): Observable<workergtpositions[]> {
+    console.log('inputvalue', inputValue);
+    this.inputValue = inputValue;
+    return this.http
+      .get<ResponseHttp>(
+        this.apiUrl + '/api/workergtpositions-filter' /*this.confgapiUrl*/,
+        {
+          params: { filter: inputValue },
+        }
       )
       .pipe(
         map((data) => {

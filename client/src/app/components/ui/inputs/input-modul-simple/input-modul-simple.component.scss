@@ -1,0 +1,68 @@
+.body {
+}
+
+.body__title {
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  line-height: 1.5;
+  height: 20px;
+  /*padding: 10px 20px 0px 20px;*/
+  padding-left: 10px;
+  transition: 0.3s;
+}
+
+.body__title.show {
+  color: #0766a5;
+}
+
+.body__main {
+  position: relative;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  transition: border 0.4s;
+  padding: 5px 10px 5px 10px;
+  border-radius: 0px;
+  transition: 0.3s;
+}
+
+.body__main.show {
+  border: 1px Solid #0766a5;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.body__main__input {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  max-height: 50px;
+  min-height: 35px;
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18px;
+  line-height: 1.5;
+  /*padding: 26px 0px 14px 20px;*/
+
+  border: 0px solid #2f66ff;
+  outline: none;
+  transition: background-color 0.4s;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #fff;
+  color: #000;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+  padding: 8px;
+  margin-right: 20px;
+  transition: 0.5s;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #eee;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+}

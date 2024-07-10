@@ -1,0 +1,6 @@
+<label class="body" for="{{forid}}">
+	<div class="body__title" [class.show]="isShowed">{{title}}</div>
+	<div class="body__main" [class.show]="isShowed">
+		<input type="{{type}}" #myInputSimple id="{{inputid}}" (click)="toggleActiveSimple($event.target)" class="body__main__input" (input)="onInputValueChange($event)" [value]="value" (blur)="isShowed=false" placeholder="{{pholder}}" />
+	</div>
+</label>

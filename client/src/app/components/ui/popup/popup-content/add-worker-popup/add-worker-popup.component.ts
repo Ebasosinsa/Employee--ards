@@ -9,7 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { workerinfo } from '../../../../../models/workerinfo';
 import { WorkerGtPositionsService } from '../../../../../service/WorkerGtPositions/worker-gt-positions.service';
 import { workergtpositions } from '../../../../../models/workergtpositions';
-
+import { inputArr } from '../../../../../models/inputArr';
+import { debounceTime } from 'rxjs/operators';
+import { SharingAddFormService } from '../../../../../service/sharingAddForm/sharing-add-form.service';
 @Component({
   selector: 'app-add-worker-popup',
   templateUrl: './add-worker-popup.component.html',
@@ -32,11 +34,15 @@ export class AddWorkerPopupComponent {
     note_worker: new FormControl(''),
   });
 
+  dropdownOptions: any = [1, 1, 1, 12, 1, 1, 1, 1];
+
   categories!: workercategory[];
   departments!: workerdepartment[];
   gtpositions!: workergtpositions[];
   filterPositions!: workergtpositions[];
   filteringWords!: any;
+  gtpositionscolums: string;
+  inputArr: inputArr;
 
   isModuleShowed: boolean = false;
   menuBtnClick: boolean = false;
@@ -50,7 +56,8 @@ export class AddWorkerPopupComponent {
     private profileService: WorkerInfoService,
     private renderer: Renderer2,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private sharingAddFormService: SharingAddFormService
   ) {
     this.profile = {
       id_worker: 0,
@@ -79,33 +86,58 @@ export class AddWorkerPopupComponent {
     this.getDepartment();
     this.getCategory();
     this.getGtPositions();
+    this.formAddWorker
+      .get('positions_worker')
+      ?.valueChanges.pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.workergtpositionsService
+          .filterGtPositions(value)
+          .subscribe((data) => {
+            this.gtpositions = data;
+            this.inputArr = {
+              data: {
+                item: this.gtpositions,
+              },
+              colums: this.gtpositionscolums,
+            };
+          });
+      });
   }
 
   getDepartment() {
     this.departmentService.getDepartment().subscribe((data) => {
       this.departments = data;
       console.log(this.departments);
-      console.log(this.departments[1]);
-      console.log(data[0].id_departments);
     });
   }
 
   getCategory() {
     this.categoryService.getCategory().subscribe((data) => {
       this.categories = data;
-      console.log(this.categories[1]);
-      console.log(data[0].id_categories);
+      console.log(this.categories);
     });
   }
 
   getGtPositions() {
     this.workergtpositionsService.getGtPositions().subscribe((data) => {
       this.gtpositions = data;
-      this.filterPositions = this.gtpositions;
+      this.gtpositionscolums = 'name_gt_worker_positions';
+      /*this.filterPositions = this.gtpositions;
+      console.log('filterPosition', this.filterPositions);*/
     });
   }
 
-  filteringArr() {
+  /*getGtPositionsInfo() {
+    console.log('11111', this.gtpositions);
+    return this.gtpositions;
+    this.inputArr = {
+      data: {
+        item: this.gtpositions,
+      },
+      colums: this.gtpositionscolums,
+    }
+  }*/
+  /*filteringArr() {
     this.filteringWords = this.formAddWorker.value.positions_worker;
     this.filterPositions = this.gtpositions.filter((n) => {
       //Определяем, совпадает ли, то что мы занесли в инпут
@@ -122,7 +154,7 @@ export class AddWorkerPopupComponent {
     this.formAddWorker.controls['positions_worker'].setValue(inputValue);
     this.menuBtnClick = false;
     this.isModuleShowed = false;
-  }
+  }*/
 
   isOpen: boolean = false;
   isChecked: boolean = false;
@@ -163,13 +195,13 @@ export class AddWorkerPopupComponent {
       this.formAddWorker.get('gender_worker')?.setValue('true');
     }
   }
-  toggleShowModule(el: any) {
-    if ((el.id = 'positions_worker')) {
+  public toggleShowModule(inputEl: any): void {
+    if ((inputEl.id = 'positions_worker')) {
       this.isModuleShowed = !this.isModuleShowed;
       this.isModuleShowed
         ? this.myInputPosition.nativeElement.focus()
         : this.myInputPosition.nativeElement.blur();
-      this.targetElement = el.id;
+      this.targetElement = inputEl.id;
     } else {
       //ifelse... ко всем элементам формы
     }

@@ -26,6 +26,9 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import { InputModulSimpleComponent } from './components/ui/inputs/input-modul-simple/input-modul-simple.component';
+import { InputModulDropdownComponent } from './components/ui/inputs/input-modul-dropdown/input-modul-dropdown.component';
+import { InputModulToggleComponent } from './components/ui/inputs/input-modul-toggle/input-modul-toggle.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { provideRouter } from '@angular/router';
     WorkerProfileComponent,
     PopupComponent,
     AddWorkerPopupComponent,
+    InputModulSimpleComponent,
+    InputModulDropdownComponent,
+    InputModulToggleComponent,
   ],
   imports: [
     BrowserModule,

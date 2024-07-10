@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiGtWorkerPosition;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,5 @@ Route::middleware('api')->group( function () {
   Route::resource('workercategory', 'Api\ApiCategory');
   Route::resource('workerdepartment', 'Api\ApiDepartment');
   Route::resource('workergtpositions', 'Api\ApiGtWorkerPosition');
-
+  Route::get('workergtpositions-filter', 'Api\ApiGtWorkerPosition@filter');
 });
