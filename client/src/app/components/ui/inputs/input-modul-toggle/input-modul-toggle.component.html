@@ -1,1 +1,11 @@
-<p>input-modul-toggle works!</p>
+<label class="body" for="{{forid}}">
+	<div class="body__title" [class.show]="isShowed">{{title}}</div>
+	<div class="body__main" [class.show]="isShowed">
+		<div class="body__main__left-value">{{leftside}}</div>
+		<div class="body__main__middle">
+			<input #myInputToggler type="{{type}}" id="{{inputid}}" (input)="onInputValueChange($event)" (click)="ToggleAddWorker()" (blur)="isShowed=false" name="gender" class="body__main__middle__checkboxdell" [checked]="isChecked" [value]="value" />
+			<span class="body__main__middle__togglecheckbox" [class.switch-on]="this.isChecked"></span>
+		</div>
+		<div class="body__main__right-value">{{rightside}}</div>
+	</div>
+</label>

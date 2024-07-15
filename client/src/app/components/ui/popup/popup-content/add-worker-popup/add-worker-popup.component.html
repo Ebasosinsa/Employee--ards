@@ -13,98 +13,44 @@
 					<div class="body__popup__container__body__content__row__section">
 						<!--Дата рождения-->
 						<app-input-modul-simple [formControlName]="'birthday_worker'" forid="birthday_worker" inputid="birthday_worker" title="Дата рождения" type="date" pholder=""></app-input-modul-simple>
-						<div class="body__popup__container__body__content__row__section__module">
-							<div class="body__popup__container__body__content__row__section__module__title">
-								Пол работника
-							</div>
-							<div class="body__popup__container__body__content__row__section__module__main-toggle" (click)="ToggleAddWorker() ">
-								<div class="body__popup__container__body__content__row__section__module__main-toggle__boy">Мужской</div>
-								<div class="body__popup__container__body__content__row__section__module__main-toggle__toggle">
-									<input
-										type="checkbox"
-										id="gender_worker"
-										formControlName="gender_worker"
-										name="gender"
-										class="body__popup__container__body__content__row__section__module__main-toggle__toggle__switch-btn__checkboxdell"
-										[checked]="isChecked"
-										value="{{isCheckedValue}}"
-									/>
-									<span class="body__popup__container__body__content__row__section__module__main-toggle__toggle__switch-btn" [class.switch-on]="isOpen"></span>
-								</div>
-								<div class="body__popup__container__body__content__row__section__module__main-toggle__girl">Женский</div>
-							</div>
-						</div>
+						<!--Пол работника-->
+						<app-input-modul-toggle [formControlName]="'gender_worker'" forid="gender_worker" inputid="gender_worker" title="Пол работника" type="checkbox" pholder="" leftside="Мужской" rightside="Женский"></app-input-modul-toggle>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
-					<!--Филиал-->
-					<app-input-modul-dropdown
-						[formControlName]="'departments_worker'"
-						[options]="gtpositions"
-						[optionsid]="'id_gt_worker_positions'"
-						[optionsname]="'inputArrFiltered.name_gt_worker_positions'"
-						forid="departments_worker"
-						inputid="departments_worker"
-						title="Филиал"
-						type="text"
-						pholder="Филиал"
-					></app-input-modul-dropdown>
-					<!--<div class="body__popup__container__body__content__row__section-no-grid">
-						<div class="body__popup__container__body__content__row__section-no-grid__module">
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title" [class.show]="isModuleShowed && 'departments_worker' === targetElement">
-									Филиал
-								</div>
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body" [class.show]="isModuleShowed && 'departments_worker' === targetElement">
-									<input type="text" id="departments_worker" formControlName="departments_worker" class="body__popup__container__body__content__row__section-no-grid__module__main__body__input" autocomplete="off" placeholder="Филиал" />
-									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret">
-										<svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-										</svg>
-									</div>
-								</div>
-							</div>
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
-									<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row" id="{{ department.id_departments }}" *ngFor="let department of departments">
-										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ department.name_departments }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>-->
 					<div class="body__popup__container__body__content__row__section">
-						<div class="body__popup__container__body__content__row__section-no-grid__module" appDropDownMenu>
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__title">
-									Категория
-								</div>
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__body">
-									<input type="text" id="categories_worker" formControlName="categories_worker" class="body__popup__container__body__content__row__section-no-grid__module__main__body__input" autocomplete="off" placeholder="Категория" />
-									<div class="body__popup__container__body__content__row__section-no-grid__module__main__body__caret">
-										<svg class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M19.5 9L12 16.5L4.5 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-										</svg>
-									</div>
-								</div>
-							</div>
-							<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown">
-								<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body">
-									<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row" id="{{ categoriy.id_categories}}" *ngFor="let categoriy of categories">
-										<div class="body__popup__container__body__content__row__section-no-grid__module__main__dropdown__body__row__text">{{ categoriy.name_categories }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<!--Филиал-->
+						<app-input-modul-dropdown [formControlName]="'departments_worker'" [options]="departments" forid="departments_worker" inputid="departments_worker" title="Филиал" type="text" pholder="Филиал" [isReadOnly]="true"></app-input-modul-dropdown>
+					</div>
+					<div class="body__popup__container__body__content__row__section">
+						<!--Категория-->
+						<app-input-modul-dropdown
+							[formControlName]="'categories_worker'"
+							[options]="categories"
+							forid="categories_worker"
+							inputid="categories_worker"
+							title="Категория"
+							type="text"
+							pholder="Категория"
+							[isReadOnly]="true"
+						></app-input-modul-dropdown>
 						<!--Принят на работу-->
 						<app-input-modul-simple [formControlName]="'date_hiring_worker'" forid="date_hiring_worker" inputid="date_hiring_worker" title="Принят на работу" type="date" pholder=""></app-input-modul-simple>
 					</div>
 				</div>
-
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section-no-grid">
 						<!--Должность-->
-						<app-input-modul-dropdown [formControlName]="'positions_worker'" forid="positions_worker" inputid="positions_worker" title="Должность" type="text" pholder="Должность"></app-input-modul-dropdown>
+						<app-input-modul-dropdown
+							type="text"
+							[formControlName]="'positions_worker'"
+							[options]="this.positions"
+							forid="positions_worker"
+							inputid="positions_worker"
+							title="Должность"
+							pholder="Должность"
+							[isReadOnly]="false"
+						></app-input-modul-dropdown>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
@@ -116,7 +62,7 @@
 					</div>
 					<div class="body__popup__container__body__content__row__section">
 						<!--Загрузить фото-->
-						<app-input-modul-simple [formControlName]="'photo_worker'" forid="photo_workerd" inputid="photo_worker" title="Загрузить фото" type="file" pholder=""></app-input-modul-simple>
+						<app-input-modul-simple [formControlName]="'photo_worker'" forid="photo_worker" inputid="photo_worker" title="Загрузить фото" type="file" pholder=""></app-input-modul-simple>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">

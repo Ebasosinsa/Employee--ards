@@ -5,6 +5,7 @@ export interface workerinfo {
   id_worker: number;
   fio_worker: string;
   birthday_worker: string;
+  gender_worker: boolean;
   departments_worker: number;
   positions_worker: number;
   competency_worker: string;

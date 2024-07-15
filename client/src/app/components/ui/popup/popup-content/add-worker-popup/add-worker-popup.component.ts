@@ -16,7 +16,6 @@ import { WorkerGtPositionsService } from '../../../../../service/WorkerGtPositio
 import { workergtpositions } from '../../../../../models/workergtpositions';
 import { inputArr } from '../../../../../models/inputArr';
 import { debounceTime } from 'rxjs/operators';
-import { SharingAddFormService } from '../../../../../service/sharingAddForm/sharing-add-form.service';
 @Component({
   selector: 'app-add-worker-popup',
   templateUrl: './add-worker-popup.component.html',
@@ -28,7 +27,7 @@ export class AddWorkerPopupComponent {
   formAddWorker = new FormGroup({
     fio_worker: new FormControl('', Validators.required),
     birthday_worker: new FormControl('', Validators.required),
-    gender_worker: new FormControl(''),
+    gender_worker: new FormControl('false'),
     departments_worker: new FormControl('', Validators.required),
     categories_worker: new FormControl('', Validators.required),
     date_hiring_worker: new FormControl(''),
@@ -39,18 +38,16 @@ export class AddWorkerPopupComponent {
     note_worker: new FormControl(''),
   });
 
-  dropdownOptions: any = [1, 1, 1, 12, 1, 1, 1, 1];
-
   categories!: workercategory[];
   departments!: workerdepartment[];
   gtpositions!: workergtpositions[];
+  positions!: any[];
   filterPositions!: workergtpositions[];
   filteringWords!: any;
   gtpositionscolums: string;
   inputArr: inputArr;
 
   isModuleShowed: boolean = false;
-  menuBtnClick: boolean = false;
   targetElement: any;
   profile: workerinfo;
 
@@ -61,13 +58,13 @@ export class AddWorkerPopupComponent {
     private profileService: WorkerInfoService,
     private renderer: Renderer2,
     private router: Router,
-    private activateRoute: ActivatedRoute,
-    private sharingAddFormService: SharingAddFormService
+    private activateRoute: ActivatedRoute
   ) {
     this.profile = {
       id_worker: 0,
       fio_worker: '',
       birthday_worker: '',
+      gender_worker: false,
       departments_worker: 0,
       positions_worker: 0,
       competency_worker: '',
@@ -78,19 +75,16 @@ export class AddWorkerPopupComponent {
       add_date_worker: '',
       photo_worker: '',
     };
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (!this.menuBtnClick) {
-        this.isModuleShowed = false;
-      }
-      this.menuBtnClick = false;
-      this.isModuleShowed = false;
-    });
   }
 
   ngOnInit(): void {
     this.getDepartment();
     this.getCategory();
     this.getGtPositions();
+    this.subscribedformAddWorkerPositions();
+    this.subscribedformAddWorkerDepartment();
+  }
+  subscribedformAddWorkerPositions() {
     this.formAddWorker
       .get('positions_worker')
       ?.valueChanges.pipe(debounceTime(300))
@@ -98,14 +92,29 @@ export class AddWorkerPopupComponent {
         this.workergtpositionsService
           .filterGtPositions(value)
           .subscribe((data) => {
-            this.gtpositions = data;
-            this.inputArr = {
-              data: {
-                item: this.gtpositions,
-              },
-              colums: this.gtpositionscolums,
-            };
+            this.positions = data;
           });
+      });
+  }
+
+  subscribedformAddWorkerDepartment() {
+    this.formAddWorker
+      .get('departments_worker')
+      ?.valueChanges.pipe(debounceTime(300))
+      .subscribe((value) => {
+        console.log('value departament', value);
+        if (value == 'ООО «ГТ Север»') {
+          console.log('ООО «ГТ Север»');
+          this.getGtPositions();
+        }
+        if (value == 'ООО «Арктик-Флот»') {
+          console.log('ООО «Арктик-Флот»');
+          this.getAfPositions();
+        }
+        if (value == 'ООО "ЭТЦ"АЛЬФА"') {
+          console.log('ООО "ЭТЦ"АЛЬФА"');
+          this.getEtsPositions();
+        }
       });
   }
 
@@ -126,13 +135,65 @@ export class AddWorkerPopupComponent {
   getGtPositions() {
     this.workergtpositionsService.getGtPositions().subscribe((data) => {
       this.gtpositions = data;
-      this.gtpositionscolums = 'name_gt_worker_positions';
-
-      /*this.filterPositions = this.gtpositions;
-      console.log('filterPosition', this.filterPositions);*/
+      this.positions = this.gtpositions;
     });
   }
+  getAfPositions() {
+    this.workergtpositionsService.getGtPositions().subscribe((data) => {
+      this.gtpositions = data;
+      this.positions = [
+        {
+          id_af_worker_positions: 1,
+          name_af_worker_positions: '111',
+          name2_af_worker_positions: 'А22222',
+          name3_af_worker_positions: 'А22222',
+        },
+        {
+          id_aft_worker_positions: 1,
+          name_af_worker_positions: 'А22222',
+          name2_af_worker_positions: 'А22222',
+          name3_af_worker_positions: 'А22222',
+        },
+        {
+          id_aft_worker_positions: 1,
+          name_af_worker_positions: '3333333',
+          name2_af_worker_positions: 'А22222',
+          name3_af_worker_positions: 'А22222',
+        },
+      ];
+      console.log(this.positions);
+    });
 
+    /* this.workergtpositionsService.getGtPositions().subscribe((data) => {
+      this.gtpositions = data;
+    });*/
+  }
+  getEtsPositions() {
+    this.positions = [
+      {
+        id_af_worker_positions: 1,
+        name_af_worker_positions: '55',
+        name2_af_worker_positions: '55',
+        name3_af_worker_positions: '55',
+      },
+      {
+        id_aft_worker_positions: 1,
+        name_af_worker_positions: '66',
+        name2_af_worker_positions: '66',
+        name3_af_worker_positions: '66',
+      },
+      {
+        id_aft_worker_positions: 1,
+        name_af_worker_positions: '77',
+        name2_af_worker_positions: '77',
+        name3_af_worker_positions: '7',
+      },
+    ];
+    /* this.workergtpositionsService.getGtPositions().subscribe((data) => {
+      this.gtpositions = data;
+
+    });*/
+  }
   /*getGtPositionsInfo() {
     console.log('11111', this.gtpositions);
     return this.gtpositions;
@@ -143,77 +204,18 @@ export class AddWorkerPopupComponent {
       colums: this.gtpositionscolums,
     }
   }*/
-  /*filteringArr() {
-    this.filteringWords = this.formAddWorker.value.positions_worker;
-    this.filterPositions = this.gtpositions.filter((n) => {
-      //Определяем, совпадает ли, то что мы занесли в инпут
-      //с названием профессий внутри массива
-      const forbiddenChars = '\\[\\]{}'; // Например, исключить также { и }
-      const regexStr = this.filteringWords + `[^${forbiddenChars}]`;
-      const regex = new RegExp(regexStr, 'gi');
-      return n.name_gt_worker_positions.match(regex);
-    });
-  }
-
-  addValue(inputValue: string) {
-    console.log(inputValue);
-    this.formAddWorker.controls['positions_worker'].setValue(inputValue);
-    this.menuBtnClick = false;
-    this.isModuleShowed = false;
-  }*/
 
   isOpen: boolean = false;
   isChecked: boolean = false;
-  isCheckedValue: number = 0;
+  isCheckedValue: boolean = false;
   inputFocusActive: boolean = false;
 
-  /*inputFocus(event: any): void {
-    console.log(event.target);
-    event.target.focus((this.inputFocusActive = true));
-  }*/
-
-  ToggleAddWorker() {
-    this.isOpen
-      ? ((this.isCheckedValue = 0),
-        (this.isChecked = false),
-        this.formAddWorker.get('gender_worker')?.setValue('false'))
-      : ((this.isCheckedValue = 1),
-        (this.isChecked = true),
-        this.formAddWorker.get('gender_worker')?.setValue('true'));
-    console.log(this.formAddWorker.get(['gender_worker'])?.value);
-    this.isOpen = !this.isOpen;
-  }
-  /*(focus)="formColorFocus($event.target)" (blur)="formColorBlurs($event.target)"
-  formColorFocus(element: any): void {
-    console.log('focus', element);
-    this.inputFocusActive = true;
-  }
-  formColorBlurs(eve: any = this.eve): void {
-    console.log('blurs', this.eve);
-    this.inputFocusActive = false;
-  }*/
   addWorker() {
     if (this.formAddWorker.valid) {
       console.log(this.formAddWorker.value);
     } else {
       console.log('Ne valid');
-      console.log(this.categories);
-      this.formAddWorker.get('gender_worker')?.setValue('true');
+      console.log(this.formAddWorker.value);
     }
-  }
-  public toggleShowModule(inputEl: any): void {
-    if ((inputEl.id = 'positions_worker')) {
-      this.isModuleShowed = !this.isModuleShowed;
-      this.isModuleShowed
-        ? this.myInputPosition.nativeElement.focus()
-        : this.myInputPosition.nativeElement.blur();
-      this.targetElement = inputEl.id;
-    } else {
-      //ifelse... ко всем элементам формы
-    }
-  }
-  preventCloseOnClick() {
-    this.menuBtnClick = true;
-    console.log('preventCloseOnClick');
   }
 }

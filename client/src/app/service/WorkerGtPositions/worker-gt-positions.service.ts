@@ -32,7 +32,7 @@ export class WorkerGtPositionsService {
       );
   }
 
-  filterGtPositions(inputValue: any): Observable<workergtpositions[]> {
+  filterGtPositions(inputValue: any): Observable<any[]> {
     console.log('inputvalue', inputValue);
     this.inputValue = inputValue;
     return this.http

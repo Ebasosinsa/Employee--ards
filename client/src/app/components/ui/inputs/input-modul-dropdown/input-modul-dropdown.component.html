@@ -5,6 +5,7 @@
 		</div>
 		<div class="body__main__body" [class.show]="isShowed">
 			<input
+				[readonly]="isReadOnly"
 				#myInputDropDown
 				type="{{type}}"
 				id="{{inputid}}"
@@ -15,7 +16,6 @@
 				(input)="onInputValueChange($event)"
 				(click)="toggleActive()"
 				(blur)="isShowed=false"
-				(keyup)="filteringArr()"
 			/><!--(keyup)="filteringArr()"-->
 			<div class="body__main__body__caret" [class.show]="isShowed">
 				<svg id="positions_worker_carret" class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +26,8 @@
 	</div>
 	<div class="body__main__dropdown" [class.show]="isShowed">
 		<div class="body__main__dropdown__body">
-			<div class="body__main__dropdown__body__row" name="positions_worker_dropdownrow" id="{{inputArrFiltered.optionsid}}" *ngFor="let inputArrFiltered of options" (click)="addValue(inputArrFiltered.optionsname); isShowed=false">
-				<div class="body__main__dropdown__body__row__text">{{aye123}}</div>
+			<div class="body__main__dropdown__body__row" name="positions_worker_dropdownrow" id="{{inputArrFiltered[this.optionskeys[0]]}}" *ngFor="let inputArrFiltered of options" (click)="addValue(inputArrFiltered[this.optionskeys[1]]); isShowed=false">
+				<div class="body__main__dropdown__body__row__text">{{inputArrFiltered[this.optionskeys[1]]}}</div>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,99 @@
+.body {
+}
+
+.body__title {
+  text-align: left;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  line-height: 1.5;
+  height: 20px;
+  /*padding: 10px 20px 0px 20px;*/
+  padding-left: 10px;
+  transition: 0.3s;
+}
+.body__title.show {
+  color: #054e7e;
+}
+
+.body__main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px Solid rgba(0, 0, 0, 0.15);
+  transition: border 0.4s;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  max-height: 50px;
+  min-height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+
+.body__main.show {
+  border: 1px solid #054e7e;
+}
+.body__main__left-value,
+.body__main__right-value {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 18px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*text-align: center;
+  vertical-align: middle;*/
+}
+
+.body__main__middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body__main__middle__checkboxdell {
+  width: 10;
+  height: 10;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.body__main__middle__togglecheckbox {
+  display: inline-block;
+  width: 25px; /* ширина переключателя */
+  height: 15px; /* высота переключателя */
+  border-radius: 15px; /* радиус скругления */
+  border: 2px solid #054e7e;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+}
+
+.body__main__middle__togglecheckbox::after {
+  content: "";
+  height: 7px; /* высота кнопки */
+  width: 7px; /* ширина кнопки */
+  border-radius: 10px; /* радиус кнопки */
+  top: 2px; /* положение кнопки по вертикали относительно основы */
+  left: 2px; /* положение кнопки по горизонтали относительно основы */
+  transition-duration: 300ms; /* анимация */
+  position: absolute;
+  z-index: 1;
+  border: 2px solid #054e7e;
+}
+
+.body__main__middle__togglecheckbox.switch-on {
+}
+
+.switch-on::after {
+  left: 12px;
+}
