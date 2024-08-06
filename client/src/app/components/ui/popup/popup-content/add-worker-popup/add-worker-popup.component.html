@@ -44,12 +44,13 @@
 						<app-input-modul-dropdown
 							type="text"
 							[formControlName]="'positions_worker'"
-							[options]="this.positions"
+							[options]="positions"
 							forid="positions_worker"
 							inputid="positions_worker"
 							title="Должность"
 							pholder="Должность"
 							[isReadOnly]="false"
+							(changeCardWorker)="changeCardWorker($event)"
 						></app-input-modul-dropdown>
 					</div>
 				</div>
@@ -83,7 +84,7 @@
 						<button class="body__popup__container__body__footer__btn__cancel__input">Отменить</button>
 					</div>
 					<div class="body__popup__container__body__footer__btn__submit">
-						<input type="submit" id="123" class="body__popup__container__body__footer__btn__submit__input" (click)="addWorker()" value="Добавить сотрудника" />
+						<input type="submit" id="123" class="body__popup__container__body__footer__btn__submit__input" (click)="onSubmit()" value="Добавить сотрудника" />
 					</div>
 				</div>
 			</div>

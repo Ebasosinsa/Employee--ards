@@ -6,6 +6,8 @@ import {
   forwardRef,
   Input,
   ViewChild,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -32,6 +34,7 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
   @Input() forid: string;
   @Input() options: any[];
   @Input() isReadOnly: boolean;
+  @Output() changeCardWorker = new EventEmitter<any>();
 
   public optionskeys: any;
 
@@ -75,15 +78,18 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
   }
 
   public toggleActive(): void {
+    this.optionskeys =
+      this.options?.length > 0 ? Object.keys(this.options[0]) : [];
     this.isShowed = !this.isShowed;
     this.isShowed
       ? this.myInputDropDown.nativeElement.focus()
       : this.myInputDropDown.nativeElement.blur();
-    this.optionsKeysChange();
   }
   //Добавление значение в инпут при выборе
-  public addValue(inputValue: string) {
+  public addValue(inputValue: string, kardworker: string) {
     this.value = inputValue;
+    console.log(kardworker);
+    this.changeCardWorker.emit(kardworker);
     this.onChange(this.value);
   }
 }

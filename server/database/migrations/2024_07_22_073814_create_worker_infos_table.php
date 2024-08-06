@@ -33,8 +33,8 @@ class CreateWorkerInfosTable extends Migration
             $table->date('date_hiring_worker');                                 /*Дата найма сотрудника */  
             $table->date('date_layoff_worker');                                 /*Дата увольнения сотрудника */
             $table->string('note_worker')->nullable();                          /*Примечание */       
-            $table->timestamps();                                               /*Дата добавления в базу */  
             $table->string('photo_worker');                                     /*Фото сотрудника */  
+            $table->timestamps();                                               /*Дата добавления в базу */  
             
         });
     }

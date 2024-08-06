@@ -26,7 +26,13 @@
 	</div>
 	<div class="body__main__dropdown" [class.show]="isShowed">
 		<div class="body__main__dropdown__body">
-			<div class="body__main__dropdown__body__row" name="positions_worker_dropdownrow" id="{{inputArrFiltered[this.optionskeys[0]]}}" *ngFor="let inputArrFiltered of options" (click)="addValue(inputArrFiltered[this.optionskeys[1]]); isShowed=false">
+			<div
+				class="body__main__dropdown__body__row"
+				name="positions_worker_dropdownrow"
+				id="{{inputArrFiltered[this.optionskeys[0]]}}"
+				*ngFor="let inputArrFiltered of options"
+				(click)="addValue(inputArrFiltered[this.optionskeys[1]], inputArrFiltered[this.optionskeys[2]]); isShowed=false"
+			>
 				<div class="body__main__dropdown__body__row__text">{{inputArrFiltered[this.optionskeys[1]]}}</div>
 			</div>
 		</div>

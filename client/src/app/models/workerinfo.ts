@@ -15,6 +15,7 @@ export interface workerinfo {
   note_worker?: string;
   add_date_worker: string;
   photo_worker: string;
+  positions_worker_card: any;
 
   workercategory?: workercategory;
   workerdepartment?: workerdepartment;

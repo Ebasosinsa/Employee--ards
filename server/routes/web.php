@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ApiWorkerInfo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('workerinfo', ApiWorkerInfo::class);
 //Route::get('/api/workerdepartment', 'Api\ApiDepartment@index');
 //Route::get('/api/workercategory', 'Api\ApiCategory@index');

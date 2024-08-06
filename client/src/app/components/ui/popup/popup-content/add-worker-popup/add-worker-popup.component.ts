@@ -16,49 +16,67 @@ import { WorkerGtPositionsService } from '../../../../../service/WorkerGtPositio
 import { workergtpositions } from '../../../../../models/workergtpositions';
 import { inputArr } from '../../../../../models/inputArr';
 import { debounceTime } from 'rxjs/operators';
+import { WorkerPositionsFilterService } from '../../../../../service/worker-positions-filter/worker-positions-filter.service';
+//import { FileUploadService } from '../../../../../service/file-upload/file-upload.service';
+import { File } from 'buffer';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-add-worker-popup',
   templateUrl: './add-worker-popup.component.html',
   styleUrl: './add-worker-popup.component.scss',
 })
 export class AddWorkerPopupComponent {
-  @ViewChild('myInputPosition') myInputPosition: ElementRef;
+  @ViewChild('myInputPosition') myInputPosition!: ElementRef;
   /* Публичные свойства */
   formAddWorker = new FormGroup({
     fio_worker: new FormControl('', Validators.required),
     birthday_worker: new FormControl('', Validators.required),
-    gender_worker: new FormControl('false'),
+    gender_worker: new FormControl(false),
     departments_worker: new FormControl('', Validators.required),
     categories_worker: new FormControl('', Validators.required),
-    date_hiring_worker: new FormControl(''),
+    date_hiring_worker: new FormControl(),
     positions_worker: new FormControl('', Validators.required),
     competency_worker: new FormControl(''),
     positions_worker_card: new FormControl(''),
-    photo_worker: new FormControl(''),
+    photo_worker: new FormControl(File),
     note_worker: new FormControl(''),
   });
 
   categories!: workercategory[];
   departments!: workerdepartment[];
+  departament: number = 1;
+  colums!: string;
   gtpositions!: workergtpositions[];
   positions!: any[];
+  positionsrequed!: any[];
   filterPositions!: workergtpositions[];
   filteringWords!: any;
-  gtpositionscolums: string;
-  inputArr: inputArr;
+  gtpositionscolums!: string;
+  inputArr!: inputArr;
+  valuecard: any;
+  check: boolean = false;
+
+  birthdayWorkerDate: string = '';
+  ageWorker: number | null = null;
+  ageWorkerMore18: boolean = false;
+  id: number = 0;
 
   isModuleShowed: boolean = false;
   targetElement: any;
-  profile: workerinfo;
+  profile: any;
+  elementkeys: any;
 
   constructor(
     private categoryService: WorkerCategoryService,
     private departmentService: WorkerDepartmentService,
     private workergtpositionsService: WorkerGtPositionsService,
+    private workerpositionsfilterService: WorkerPositionsFilterService,
     private profileService: WorkerInfoService,
+    //private fileuploadservice: FileUploadService,
     private renderer: Renderer2,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private http: HttpClient
   ) {
     this.profile = {
       id_worker: 0,
@@ -69,18 +87,18 @@ export class AddWorkerPopupComponent {
       positions_worker: 0,
       competency_worker: '',
       categories_worker: 0,
-      date_hiring_worker: '',
-      date_layoff_worker: '',
+      date_hiring_worker: 0,
       note_worker: '',
       add_date_worker: '',
-      photo_worker: '',
+      photo_worker: null,
+      positions_worker_card: '',
     };
   }
 
   ngOnInit(): void {
     this.getDepartment();
     this.getCategory();
-    this.getGtPositions();
+    /* this.getGtPositions();*/
     this.subscribedformAddWorkerPositions();
     this.subscribedformAddWorkerDepartment();
   }
@@ -89,10 +107,11 @@ export class AddWorkerPopupComponent {
       .get('positions_worker')
       ?.valueChanges.pipe(debounceTime(300))
       .subscribe((value) => {
-        this.workergtpositionsService
-          .filterGtPositions(value)
-          .subscribe((data) => {
+        this.workerpositionsfilterService
+          .filterPositions(value, this.departament, this.colums)
+          .subscribe((data: any) => {
             this.positions = data;
+            console.log('position', this.positions);
           });
       });
   }
@@ -100,20 +119,48 @@ export class AddWorkerPopupComponent {
   subscribedformAddWorkerDepartment() {
     this.formAddWorker
       .get('departments_worker')
-      ?.valueChanges.pipe(debounceTime(300))
+      ?.valueChanges.pipe(debounceTime(0))
+      .subscribe();
+    this.formAddWorker
+      .get('departments_worker')
+      ?.valueChanges.pipe(debounceTime(0))
       .subscribe((value) => {
         console.log('value departament', value);
         if (value == 'ООО «ГТ Север»') {
           console.log('ООО «ГТ Север»');
-          this.getGtPositions();
+          this.departament = 1;
+          this.colums = 'name_gt_worker_positions';
+          this.workerpositionsfilterService
+            .getPositions(this.departament)
+            .subscribe((data: any) => {
+              this.positions = data;
+              this.positionsrequed = this.positions;
+              this.formAddWorker.get('positions_worker')?.setValue('');
+            });
         }
         if (value == 'ООО «Арктик-Флот»') {
           console.log('ООО «Арктик-Флот»');
-          this.getAfPositions();
+          this.departament = 2;
+          this.colums = 'name_af_worker_positions';
+          this.workerpositionsfilterService
+            .getPositions(this.departament)
+            .subscribe((data: any) => {
+              this.positions = data;
+              this.positionsrequed = this.positions;
+              this.formAddWorker.get('positions_worker')?.setValue('');
+            });
         }
         if (value == 'ООО "ЭТЦ"АЛЬФА"') {
           console.log('ООО "ЭТЦ"АЛЬФА"');
-          this.getEtsPositions();
+          this.departament = 3;
+          this.colums = 'name_ets_worker_positions';
+          this.workerpositionsfilterService
+            .getPositions(this.departament)
+            .subscribe((data: any) => {
+              this.positions = data;
+              this.positionsrequed = this.positions;
+              this.formAddWorker.get('positions_worker')?.setValue('');
+            });
         }
       });
   }
@@ -132,90 +179,189 @@ export class AddWorkerPopupComponent {
     });
   }
 
-  getGtPositions() {
-    this.workergtpositionsService.getGtPositions().subscribe((data) => {
-      this.gtpositions = data;
-      this.positions = this.gtpositions;
-    });
+  changeCardWorker(valuecard: any) {
+    this.valuecard = valuecard;
+    this.formAddWorker.get('positions_worker_card')?.setValue(valuecard);
   }
-  getAfPositions() {
-    this.workergtpositionsService.getGtPositions().subscribe((data) => {
-      this.gtpositions = data;
-      this.positions = [
-        {
-          id_af_worker_positions: 1,
-          name_af_worker_positions: '111',
-          name2_af_worker_positions: 'А22222',
-          name3_af_worker_positions: 'А22222',
-        },
-        {
-          id_aft_worker_positions: 1,
-          name_af_worker_positions: 'А22222',
-          name2_af_worker_positions: 'А22222',
-          name3_af_worker_positions: 'А22222',
-        },
-        {
-          id_aft_worker_positions: 1,
-          name_af_worker_positions: '3333333',
-          name2_af_worker_positions: 'А22222',
-          name3_af_worker_positions: 'А22222',
-        },
-      ];
-      console.log(this.positions);
-    });
-
-    /* this.workergtpositionsService.getGtPositions().subscribe((data) => {
-      this.gtpositions = data;
-    });*/
-  }
-  getEtsPositions() {
-    this.positions = [
-      {
-        id_af_worker_positions: 1,
-        name_af_worker_positions: '55',
-        name2_af_worker_positions: '55',
-        name3_af_worker_positions: '55',
-      },
-      {
-        id_aft_worker_positions: 1,
-        name_af_worker_positions: '66',
-        name2_af_worker_positions: '66',
-        name3_af_worker_positions: '66',
-      },
-      {
-        id_aft_worker_positions: 1,
-        name_af_worker_positions: '77',
-        name2_af_worker_positions: '77',
-        name3_af_worker_positions: '7',
-      },
-    ];
-    /* this.workergtpositionsService.getGtPositions().subscribe((data) => {
-      this.gtpositions = data;
-
-    });*/
-  }
-  /*getGtPositionsInfo() {
-    console.log('11111', this.gtpositions);
-    return this.gtpositions;
-    this.inputArr = {
-      data: {
-        item: this.gtpositions,
-      },
-      colums: this.gtpositionscolums,
-    }
-  }*/
+  /* getGtPositions() {
+this.workergtpositionsService.getGtPositions().subscribe((data) => {
+this.gtpositions = data;
+this.positions = this.gtpositions;
+});
+}*/
 
   isOpen: boolean = false;
   isChecked: boolean = false;
   isCheckedValue: boolean = false;
   inputFocusActive: boolean = false;
+  onSubmit() {
+    // Проверка на Валидность формы
+    if (this.formAddWorker.invalid) {
+      Object.assign(this.profile, this.formAddWorker.value);
+      console.log('no add', this.categories);
+      console.log('no add', this.departments);
+      console.log(this.profile.categories_worker);
+      if (this.profile.categories_worker) {
+        this.profile.categories_worker;
+        this.categories.forEach((element) => {
+          if (
+            element.name_categories ===
+            this.formAddWorker.value.categories_worker
+          ) {
+            console.log(element);
+            this.profile.categories_worker = element.id_categories;
+          }
+        });
+      }
 
-  addWorker() {
-    if (this.formAddWorker.valid) {
-      console.log(this.formAddWorker.value);
-    } else {
-      console.log('Ne valid');
-      console.log(this.formAddWorker.value);
+      return console.log('asdasd', this.profile);
     }
+    // Подгонка данных для Базы, проверки на Новые значения
+
+    Object.assign(this.profile, this.formAddWorker.value);
+    console.log('no add', this.profile);
+    if (this.profile) {
+      // Функция для проверки ФИО на русском языке
+      if (this.profile.fio_worker) {
+        function isValidFIO(fio: string): boolean {
+          // Регулярное выражение для проверки ФИО на русском
+          const fioRegex = /^[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+$/;
+          return fioRegex.test(fio);
+        }
+        if (isValidFIO(this.profile.fio_worker)) {
+          console.log('ФИО корректно.');
+        } else {
+          console.log('ФИО некорректно.');
+        }
+      }
+      // Функция проверки возроста работнка
+      if (this.profile.birthday_worker) {
+        this.birthdayWorkerDate = this.profile.birthday_worker;
+        this.ageWorker = getAge(this.birthdayWorkerDate);
+        this.ageWorker < 18;
+
+        this.ageWorker >= 18
+          ? (this.ageWorkerMore18 = true)
+          : (this.ageWorkerMore18 = false);
+
+        console.log(this.ageWorkerMore18);
+        function getAge(birthDate: string): number {
+          const today = new Date();
+          const birthDateObj = new Date(birthDate);
+          let age = today.getFullYear() - birthDateObj.getFullYear();
+          const monthDiff = today.getMonth() - birthDateObj.getMonth();
+
+          // Если день рождения еще не был в текущем году
+          if (
+            monthDiff < 0 ||
+            (monthDiff === 0 && today.getDate() < birthDateObj.getDate())
+          ) {
+            age--;
+          }
+
+          return age;
+        }
+      }
+
+      // Изменение данных филиала сотрудника
+      if (this.profile.departments_worker) {
+        this.departments.forEach((element) => {
+          if (
+            element.name_departments ===
+            this.formAddWorker.value.departments_worker
+          ) {
+            console.log(element);
+            this.profile.departments_worker = element.id_departments;
+          }
+        });
+      }
+      // Изменение данных о категории сотрудника
+      if (this.profile.categories_worker) {
+        this.categories.forEach((element) => {
+          if (
+            element.name_categories ===
+            this.formAddWorker.value.categories_worker
+          ) {
+            console.log(element);
+            this.profile.categories_worker = element.id_categories;
+          }
+        });
+      }
+      // Изменение данных о должности сотрудника  element.elementkeys[0][1]
+      if (this.profile.positions_worker) {
+        this.profile.positions_worker;
+        console.log(this.positionsrequed);
+        this.elementkeys =
+          this.positions?.length > 0 ? Object.keys(this.positions[0]) : [];
+        //Проверяем, есть ли должность в базе выбранного филиала
+        this.check = this.positions.every((element) => {
+          if (element[this.elementkeys[1]] == this.profile.positions_worker) {
+            //Если есть, то присваиваем ей ид из базы
+            this.profile.positions_worker = element[this.elementkeys[0]];
+            console.log(this.elementkeys);
+            console.log(' add', this.profile);
+          }
+        });
+        //Если должность есть в базе - this.proverka = false(добавлять не нужно), если нет - true (нужно добавить)
+        //Если должности нету - добавляем ее в базу
+        if (this.check) {
+          console.log('proverka', this.check);
+          console.log('Добавить В Сервис Добавление Должностей!!!!!!!!');
+          this.profile.positions_worker = 1;
+        }
+      }
+      if (this.profile.photo_worker) {
+        console.log(this.profile.photo_worker);
+      }
+    }
+
+    console.log(' add', this.profile);
+    // Определение - добавление или обновление и дальнейшее направление формы на сервер
+    if (this.id) {
+      this.updateProfile();
+    } else {
+      console.log(this.profile);
+      this.addProfile();
+      this.getProfile();
+    }
+  }
+
+  getProfile() {
+    this.profileService.getProfile().subscribe((data) => {
+      console.log(data);
+      if (data) {
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  addProfile() {
+    console.log('1234556676', this.profile);
+    this.profile = this.profileService
+      .addProfile(this.profile)
+      .subscribe((data) => {
+        console.log(data);
+        if (data) {
+          this.router.navigate(['']);
+        }
+      });
+    /* if (this.profile.photo_worker) {
+this.fileuploadservice.upload(this.profile.photo_worker).subscribe({
+next: (response) => {
+console.log('Все пришло, збс', response);
+},
+error: (err) => {
+console.error('Ошибка при загрузке файла', err);
+},
+});
+}*/
+  }
+
+  updateProfile() {
+    this.profileService.updateProfile(this.profile).subscribe((data) => {
+      if (data) {
+        this.router.navigate(['']);
+      }
+    });
   }
 }

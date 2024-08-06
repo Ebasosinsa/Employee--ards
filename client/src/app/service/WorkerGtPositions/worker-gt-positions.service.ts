@@ -32,12 +32,12 @@ export class WorkerGtPositionsService {
       );
   }
 
-  filterGtPositions(inputValue: any): Observable<any[]> {
+  /*filterGtPositions(inputValue: any): Observable<any[]> {
     console.log('inputvalue', inputValue);
     this.inputValue = inputValue;
     return this.http
       .get<ResponseHttp>(
-        this.apiUrl + '/api/workergtpositions-filter' /*this.confgapiUrl*/,
+        this.apiUrl + '/api/workergtpositions-filter' /*this.confgapiUrl,
         {
           params: { filter: inputValue },
         }
@@ -51,5 +51,5 @@ export class WorkerGtPositionsService {
           return throwError(() => new Error(error));
         })
       );
-  }
+  }*/
 }
