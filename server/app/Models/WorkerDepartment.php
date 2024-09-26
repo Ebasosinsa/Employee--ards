@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WorkerDepartment extends Model
 {
     use HasFactory;
+
 }

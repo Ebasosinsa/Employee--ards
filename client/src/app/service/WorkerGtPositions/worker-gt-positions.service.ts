@@ -11,8 +11,8 @@ import { environment } from '../../../environments/environment';
 })
 export class WorkerGtPositionsService {
   apiUrl = 'http://127.0.0.1:8000';
-  inputValue: string;
-  filteredArray: workergtpositions[];
+  inputValue!: string;
+  filteredArray!: workergtpositions[];
 
   constructor(private http: HttpClient) {}
 

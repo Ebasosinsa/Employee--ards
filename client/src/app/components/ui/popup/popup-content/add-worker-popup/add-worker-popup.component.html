@@ -4,15 +4,35 @@
 			<!--<div class="body__popup__container__body__header">
 				<div class="body__popup__container__body__header__text"></div>
 			</div>-->
-			<div class="body__popup__container__body__content" [formGroup]="formAddWorker">
+			<form class="body__popup__container__body__content" [formGroup]="this.formAddWorker" enctype="multipart/form-data">
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
 						<!--Фио Сотрудника-->
-						<app-input-modul-simple [formControlName]="'fio_worker'" forid="fio_worker" inputid="fio_worker" title="Фио Сотрудника" type="text" pholder="Соловьев Руслан Алексеевич"></app-input-modul-simple>
+						<app-input-modul-simple
+							[formControlName]="'fio_worker'"
+							[Error]="this.formAddWorker.get('fio_worker')"
+							[ErrorMessage]="getErrorMessage('fio_worker')"
+							[formSubmitted]="this.formSubmitted"
+							forid="fio_worker"
+							inputid="fio_worker"
+							title="Фио Сотрудника"
+							type="text"
+							pholder="Соловьев Руслан Алексеевич"
+						></app-input-modul-simple>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
 						<!--Дата рождения-->
-						<app-input-modul-simple [formControlName]="'birthday_worker'" forid="birthday_worker" inputid="birthday_worker" title="Дата рождения" type="date" pholder=""></app-input-modul-simple>
+						<app-input-modul-simple
+							[formControlName]="'birthday_worker'"
+							[Error]="this.formAddWorker.get('birthday_worker')"
+							[ErrorMessage]="getErrorMessage('birthday_worker')"
+							[formSubmitted]="this.formSubmitted"
+							forid="birthday_worker"
+							inputid="birthday_worker"
+							title="Дата рождения"
+							type="date"
+							pholder=""
+						></app-input-modul-simple>
 						<!--Пол работника-->
 						<app-input-modul-toggle [formControlName]="'gender_worker'" forid="gender_worker" inputid="gender_worker" title="Пол работника" type="checkbox" pholder="" leftside="Мужской" rightside="Женский"></app-input-modul-toggle>
 					</div>
@@ -20,12 +40,27 @@
 				<div class="body__popup__container__body__content__row">
 					<div class="body__popup__container__body__content__row__section">
 						<!--Филиал-->
-						<app-input-modul-dropdown [formControlName]="'departments_worker'" [options]="departments" forid="departments_worker" inputid="departments_worker" title="Филиал" type="text" pholder="Филиал" [isReadOnly]="true"></app-input-modul-dropdown>
+						<app-input-modul-dropdown
+							[formControlName]="'departments_worker'"
+							[Error]="this.formAddWorker.get('departments_worker')"
+							[ErrorMessage]="getErrorMessage('departments_worker')"
+							[formSubmitted]="this.formSubmitted"
+							[options]="departments"
+							forid="departments_worker"
+							inputid="departments_worker"
+							title="Филиал"
+							type="text"
+							pholder="Филиал"
+							[isReadOnly]="true"
+						></app-input-modul-dropdown>
 					</div>
 					<div class="body__popup__container__body__content__row__section">
 						<!--Категория-->
 						<app-input-modul-dropdown
 							[formControlName]="'categories_worker'"
+							[Error]="this.formAddWorker.get('categories_worker')"
+							[ErrorMessage]="getErrorMessage('categories_worker')"
+							[formSubmitted]="this.formSubmitted"
 							[options]="categories"
 							forid="categories_worker"
 							inputid="categories_worker"
@@ -42,12 +77,15 @@
 					<div class="body__popup__container__body__content__row__section-no-grid">
 						<!--Должность-->
 						<app-input-modul-dropdown
-							type="text"
 							[formControlName]="'positions_worker'"
+							[Error]="this.formAddWorker.get('positions_worker')"
+							[ErrorMessage]="getErrorMessage('positions_worker')"
+							[formSubmitted]="this.formSubmitted"
 							[options]="positions"
 							forid="positions_worker"
 							inputid="positions_worker"
 							title="Должность"
+							type="text"
 							pholder="Должность"
 							[isReadOnly]="false"
 							(changeCardWorker)="changeCardWorker($event)"
@@ -63,7 +101,7 @@
 					</div>
 					<div class="body__popup__container__body__content__row__section">
 						<!--Загрузить фото-->
-						<app-input-modul-simple [formControlName]="'photo_worker'" forid="photo_worker" inputid="photo_worker" title="Загрузить фото" type="file" pholder=""></app-input-modul-simple>
+						<app-input-modul-file-upload [formControlName]="'photo_worker'" forid="photo_worker" inputid="photo_worker" title="Загрузить фото" type="file" pholder="" [uplphoto]="this.uplphoto"></app-input-modul-file-upload>
 					</div>
 				</div>
 				<div class="body__popup__container__body__content__row">
@@ -79,15 +117,53 @@
 						</div>
 					</div>
 				</div>
-				<div class="body__popup__container__body__footer">
-					<div class="body__popup__container__body__footer__btn__cancel">
-						<button class="body__popup__container__body__footer__btn__cancel__input">Отменить</button>
+				<!-- Кнопки отправки и отмены -->
+
+				<div class="body__popup__container__body__content__row">
+					<!-- <div class="body__popup__container__body__content__row__section">
+						<mat-form-field class="example-full-width">
+							<mat-label>Message</mat-label>
+							<input type="text" placeholder="Search for a street" [formControlName]="'positions_worker'" [matAutocomplete]="auto" class="example-input" matInput #message />
+						</mat-form-field>
+
+						<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayStreetName">
+							@for (street of this.positions; track street) {
+							<mat-option [value]="street.id_gt_worker_positions">{{street.name_gt_worker_positions}}</mat-option>
+							}
+						</mat-autocomplete>
+					</div> -->
+					<!-- @if (validerr()) {
+					<div class="body__popup__container__body__content__row__section__invalid">
+						<div class="body__popup__container__body__content__row__section__invalid__text">{{validtext}}</div>
 					</div>
-					<div class="body__popup__container__body__footer__btn__submit">
-						<input type="submit" id="123" class="body__popup__container__body__footer__btn__submit__input" (click)="onSubmit()" value="Добавить сотрудника" />
+					} @else {
+					<div class="body__popup__container__body__content__row__section__valid">
+						<div class="body__popup__container__body__content__row__section__valid__text">{{validtext}}</div>
+					</div>
+					} -->
+
+					<mat-form-field class="example-full-width">
+						<mat-label>Message</mat-label>
+						<input type="text" placeholder="Search for a street" [formControlName]="'positions_worker'" [matAutocomplete]="auto" class="example-input" matInput #message />
+					</mat-form-field>
+
+					<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayStreetName">
+						@for (street of this.positions; track street) {
+						<mat-option [value]="street.id_gt_worker_positions">{{street.name_gt_worker_positions}}</mat-option>
+						}
+					</mat-autocomplete>
+				</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section__btn">
+						<div class="body__popup__container__body__content__row__section__btn__cancel" (click)="onReset()">
+							<button class="body__popup__container__body__content__row__section__btn__cancel__input">Отменить</button>
+						</div>
+						<div class="body__popup__container__body__content__row__section__btn__submit">
+							<input type="submit" id="add_worker_submit" class="body__popup__container__body__content__row__section__btn__submit__input" (click)="onSubmit()" value="Добавить сотрудника" />
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		{{formAddWorker.value | json}}
 	</div>

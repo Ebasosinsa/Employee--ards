@@ -15,7 +15,18 @@ class ApiDepartment extends ApiController
         $this->service = $service;
     }
     public function index(){
-        $department = WorkerDepartment::all()->toJson();
-        return $department;
+        $departments = WorkerDepartment::all()->toJson();
+        return $departments;
+    }
+    public function show($id_department)
+    {
+        $department = WorkerDepartment::where('id_departments', $id_department)->first();
+        // $workerInfo = WorkerInfo::all('fio_worker', 'departments_worker')
+        //     ->where('departments_worker', '2')
+        if (!$department) {
+            return response()->json(['message' => 'Department not found'], 404);
+        }
+
+        return response()->json($department, 200);
     }
 }

@@ -8,11 +8,6 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 export class PopupComponent {
   @Input() title: string = 'Modal';
   @Input() isOpen: boolean = false;
-  @Output() closeModalEvent = new EventEmitter();
-
-  closeModal() {
-    this.closeModalEvent.emit();
-  }
 
   stopPropagation(event: Event) {
     event.stopPropagation();

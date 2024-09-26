@@ -1,0 +1,41 @@
+.custom__notification {
+  display: grid;
+  grid-template-columns: 24px 1fr 50px;
+  column-gap: 20px;
+}
+
+.custom__notification__icon {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+}
+//matSnackBarLabel
+.custom__notification__text {
+  text-align: left;
+  justify-content: center;
+  vertical-align: center;
+  color: #054e7e;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.5;
+  padding-top: 1px;
+}
+//matSnackBarAction
+.custom__notification__button {
+  border: 0px Solid rgba(0, 0, 0, 0.15);
+
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+  word-spacing: 2.5px;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  color: #054e7e;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.custom__notification__button:hover {
+  background-color: #eeeeee;
+  transition: background-color 0.4s;
+}

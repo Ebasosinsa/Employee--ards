@@ -1,0 +1,9 @@
+<label class="body" for="{{forid}}">
+	<div class="body__title" [class.show]="isShowed">{{title}}</div>
+	<div class="body__main" [class.show]="isShowed">
+		<input type="{{type}}" #myInputSimple id="{{inputid}}" (click)="toggleActiveSimple($event.target)" (change)="onFileChange($event)" class="body__main__input__hidden" (blur)="isShowed=false" placeholder="{{pholder}}" />
+		<div readonly="true" class="body__main__input__text">
+			@if (uplphoto && !this.selectedFile){ {{'Фото загружено: ' + uplphoto}} }@else { {{this.selectedFile? 'Файл выбран: ' + this.selectedFile.name : 'Выберите файл'}} }
+		</div>
+	</div>
+</label>

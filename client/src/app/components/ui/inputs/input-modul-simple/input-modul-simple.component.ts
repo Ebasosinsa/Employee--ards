@@ -8,6 +8,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+import { workerinfo } from '../../../../models/workerinfo';
 
 @Component({
   selector: 'app-input-modul-simple',
@@ -23,18 +25,33 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class InputModulSimpleComponent implements ControlValueAccessor {
-  @ViewChild('myInputSimple') myInputSimple: ElementRef;
-  @Input() title: string;
-  @Input() type: string;
-  @Input() pholder: string;
-  @Input() inputid: string;
-  @Input() forid: string;
+  @ViewChild('myInputSimple')
+  myInputSimple!: ElementRef;
+  @Input()
+  title!: string;
+  @Input()
+  type!: string;
+  @Input()
+  pholder!: string;
+  @Input()
+  inputid!: string;
+  @Input()
+  forid!: string;
+  @Input()
+  Error: AbstractControl<any, any> | null;
+  @Input()
+  ErrorMessage: string | null;
+  @Input()
+  formSubmitted: boolean;
+  @Input()
+  editValue!: string;
+
   public isShowed: boolean = false;
   public targetElement: any;
 
   public value: string | undefined;
 
-  private onChange!: (value: string) => void;
+  private onChange: (value: string) => void;
   private onTouched!: () => void;
 
   constructor(private readonly changeDetector: ChangeDetectorRef) {}
@@ -48,7 +65,6 @@ export class InputModulSimpleComponent implements ControlValueAccessor {
 
   public writeValue(value: string): void {
     this.value = value;
-
     this.changeDetector.detectChanges();
   }
 
@@ -60,6 +76,11 @@ export class InputModulSimpleComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
+  onBlur() {
+    this.Error?.markAsTouched();
+    return false;
+  }
+
   public toggleActiveSimple(inputEl: any): void {
     this.isShowed = !this.isShowed;
     this.isShowed
@@ -69,6 +90,16 @@ export class InputModulSimpleComponent implements ControlValueAccessor {
     this.targetElement = inputEl.id;
   }
 
+  get hasError(): boolean {
+    return (this.Error?.hasError('required') && this.Error?.touched) ?? false;
+  }
+
+  get isInvalid(): boolean {
+    if (this.Error?.invalid && this.Error?.touched) {
+      return true;
+    }
+    return false;
+  }
   /* public toggleShowModule(inputEl: any): void {
     if ((inputEl.id = 'positions_worker')) {
       this.isModuleShowed = !this.isModuleShowed;

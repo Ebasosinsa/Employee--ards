@@ -23,8 +23,6 @@ const routes: Routes = [
     component: ToolkitComponent,
   },
   /* Страница профиля сотрудника */
-  /* В дальнейшем добавить путь по ид(profile/:id)*/
-  /* Для теста пока пусть profile */
   {
     path: 'profile/:id',
     component: WorkerProfileComponent,

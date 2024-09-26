@@ -1,32 +1,20 @@
-<div class="search">
-	<div class="search__body">
-		<div class="search__body__add-people">
-			<div class="search__body__add-people__icon">
-				<img src="assets/img/svg/people-plus-one.svg" />
-			</div>
-			<div class="search__body__add-people__text" (click)="openModal()">Добавить сотрудника</div>
-		</div>
-		<div class="search__body__str-search">
-			<input class="search__body__str-search__input" placeholder="Поиск в картотеке ..." />
-		</div>
-		<div class="search__body__btn-search">
-			<img src="assets/img/svg/search.svg" />
-		</div>
-		<div class="search__body__filter" (click)="WorkerProfileFilterBtn()">Фильтры</div>
-	</div>
-</div>
+<app-address-bar (openPopup)="openPopup($event)"></app-address-bar>
 <div class="content">
 	<div class="worker-profile">
 		<div class="worker-profile__basic-info">
 			<div class="worker-profile__basic-info__body">
 				<div class="worker-profile__basic-info__head">
+					@if (workerProfile?.fio_worker) {
 					<div class="worker-profile__basic-info__head__fio">
-						Соловьев Руслан Алексеевич
+						{{workerProfile?.fio_worker}}
 					</div>
-					<div class="worker-profile__basic-info__head__edit-profile">
+					} @else {
+					<div class="worker-profile__basic-info__head__fio"></div>
+					}
+					<div class="worker-profile__basic-info__head__edit-profile" (click)="openPopup('editworker')">
 						<img src="assets/img/svg/pencil.svg" />
 					</div>
-					<div class="worker-profile__basic-info__head__delete-profile">
+					<div class="worker-profile__basic-info__head__delete-profile" (click)="openPopup('deleteworker')">
 						<img src="assets/img/svg/delete.svg" />
 					</div>
 				</div>
@@ -39,7 +27,7 @@
 									Филиал:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									ООО «ГТ Север»
+									{{convertedDepartment(workerProfile?.departments_worker)}}
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__job-info__block">
@@ -47,7 +35,7 @@
 									Должность:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									Инженер отдела охраны окружающей среды, охраны труда и пожарной безопасности
+									{{convertedPositions(workerProfile?.positions_worker)}}
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__job-info__block">
@@ -55,7 +43,7 @@
 									Категория сотрудника:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									Рабочий
+									{{convertedCategory(this.workerProfile?.categories_worker)}}
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__job-info__block">
@@ -63,7 +51,7 @@
 									Принят на работу:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									Нет даты приема на работу
+									@if (workerProfile?.date_hiring_worker) { {{convertedDate(workerProfile?.date_hiring_worker)}} } @else { Нет даты приема}
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__job-info__block">
@@ -71,7 +59,7 @@
 									Уволен:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									Действующий сотрудник
+									@if (workerProfile?.date_layoff_worker) { {{convertedDate(workerProfile?.date_layoff_worker)}} } @else { Действующий сотрудник }
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__job-info__block">
@@ -79,7 +67,7 @@
 									Примечание:
 								</div>
 								<div class="worker-profile__basic-info__content__container__job-info__block__text">
-									Нет
+									@if (workerProfile?.note_worker) { {{workerProfile?.note_worker}} } @else { Нет }
 								</div>
 							</div>
 						</div>
@@ -89,7 +77,7 @@
 									Дата рождения:
 								</div>
 								<div class="worker-profile__basic-info__content__container__employee-info__block__text">
-									28.10.1961г. (62 года)
+									{{convertedDate(workerProfile?.birthday_worker)}}г. ({{getAgeWithText(workerProfile?.birthday_worker)}})
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__employee-info__block">
@@ -97,7 +85,7 @@
 									Образование:
 								</div>
 								<div class="worker-profile__basic-info__content__container__employee-info__block__text">
-									Начальное профессиональное
+									Начальное профессиональное - нет
 								</div>
 							</div>
 							<div class="worker-profile__basic-info__content__container__employee-info__block">
@@ -105,20 +93,25 @@
 									Медосмотр:
 								</div>
 								<div class="worker-profile__basic-info__content__container__employee-info__block__text">
-									31.12.2043
+									31.12.2043 - нет
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="worker-profile__basic-info__content__line"></div>
 					<div class="worker-profile__basic-info__content__photo">
+						<!-- {{workerProfile?.photo_worker}} -->
+						@if (workerProfile?.photo_worker) {
+						<img src="http://127.0.0.1:8000/storage/uploads/{{workerProfile?.photo_worker}}" class="worker-profile__basic-info__content__photo__img" />
+						} @else {
 						<img src="assets/img/png/avmale.png" class="worker-profile__basic-info__content__photo__img" />
+						}
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="worker-profile__additional-info">
-			<div class="worker-profile__additional-info__section" *ngFor="let button of worker_buttons" (click)="WorkerProfileBtnSelect(button)">
+			<div class="worker-profile__additional-info__section" *ngFor="let button of worker_buttons" id="{{button.id}}" (click)="WorkerProfileBtnSelect(button)">
 				<div class="worker-profile__additional-info__section__prior">
 					<div class="worker-profile__additional-info__section__prior__icon">
 						<img src="assets/img/svg/copy-one.svg" />
@@ -137,52 +130,22 @@
 	</div>
 </div>
 
-<div class="filter" [@openClose]="conditionFilterBtn ? 'open' : 'closed'">
-	<div class="filter__body">
-		<div class="filter__body__close" (click)="WorkerProfileFilterBtn()">
-			<img width="20px" height="20px" src="assets/img/svg/close.svg" />
-		</div>
-		<div class="filter__body__panel">
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head__filter">Фильтры</div>
-			</div>
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head">Категория сотрудника:</div>
-				<div class="filter__body__panel__section__body">
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">Только ИТР</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">Только Рабочие</div>
-					</div>
-				</div>
-			</div>
-			<div class="filter__body__panel__section">
-				<div class="filter__body__panel__section__head">Поиск по ... :</div>
-				<div class="filter__body__panel__section__body">
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По должности</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По специальности</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По названию программы</div>
-					</div>
-					<div class="filter__body__panel__section__body__part">
-						<div class="filter__body__panel__section__body__part__checkbox"></div>
-						<div class="filter__body__panel__section__body__part__text">По материальным ценностям</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<app-popup [title]="'Добавление нового сотрудника'" [isOpen]="isModalOpen" (closeModalEvent)="closeModal()">
-	<app-add-worker-popup></app-add-worker-popup>
+<app-popup [isOpen]="isModalOpen" [title]="getPopupTitle(currentName)" (closeModalEvent)="closeModal()">
+	<ng-container *ngIf="currentName === 'addworker'">
+		<app-popup-header [title]="'Добавление нового сотрудника'" (closeModalEvent)="closeModal()"></app-popup-header>
+		<app-popup-body>
+			<app-add-worker-popup (closeModalEvent)="closeModal()"></app-add-worker-popup>
+		</app-popup-body>
+	</ng-container>
+	<ng-container *ngIf="currentName === 'editworker'">
+		<app-popup-header [title]="'Изменение данных сотрудника'" (closeModalEvent)="closeModal()"></app-popup-header>
+		<app-popup-body>
+			<app-add-worker-popup (closeModalEvent)="closeModal()" [workerProfileId]="workerProfile?.id_worker"></app-add-worker-popup>
+		</app-popup-body>
+	</ng-container>
+	<ng-container *ngIf="currentName === 'deleteworker'">
+		<app-popup-body>
+			<app-del-worker-popup [id]="workerProfile?.id_worker" [date_layoff]="workerProfile?.date_layoff_worker" (closeModalEvent)="closeModal()" (updateProfileWorker)="getProfile()"></app-del-worker-popup>
+		</app-popup-body>
+	</ng-container>
 </app-popup>

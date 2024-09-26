@@ -1,6 +1,20 @@
 <label class="body" for="{{forid}}">
+	@if (isInvalid && formSubmitted) {
+	<div class="body__err">{{title}} {{ErrorMessage}}</div>
+	} @else{
 	<div class="body__title" [class.show]="isShowed">{{title}}</div>
-	<div class="body__main" [class.show]="isShowed">
-		<input type="{{type}}" #myInputSimple id="{{inputid}}" (click)="toggleActiveSimple($event.target)" class="body__main__input" (input)="onInputValueChange($event)" [value]="value" (blur)="isShowed=false" placeholder="{{pholder}}" />
+	}
+	<div class="body__main" [class.show]="isShowed" [class.err]="isInvalid && formSubmitted">
+		<input type="{{type}}" matInput #myInputSimple id="{{inputid}}" (click)="toggleActiveSimple($event.target)" class="body__main__input" (input)="onInputValueChange($event)" [value]="value" (blur)="isShowed=onBlur()" placeholder="{{pholder}}" />
 	</div>
 </label>
+
+<!-- <mat-form-field class="body__main">
+	<mat-label>{{title}}</mat-label>
+	<input matInput type="{{type}}" [(ngModel)]="value" id="{{inputid}}" />
+	@if (value) {
+	<button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+		<mat-icon>close</mat-icon>
+	</button>
+	}
+</mat-form-field> -->

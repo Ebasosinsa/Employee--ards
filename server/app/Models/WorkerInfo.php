@@ -9,6 +9,8 @@ class WorkerInfo extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_worker';
+    
     protected $fillable = [
         'fio_worker',
         'categories_worker',

@@ -1,30 +1,14 @@
-<div class="search">
-	<div class="search__body">
-		<div class="search__body__add-people">
-			<div class="search__body__add-people__icon">
-				<img src="assets/img/svg/people-plus-one.svg" />
-			</div>
-			<div class="search__body__add-people__text">Добавить сотрудника</div>
-		</div>
-		<div class="search__body__str-search">
-			<input class="search__body__str-search__input" placeholder="Поиск в картотеке ..." />
-		</div>
-		<div class="search__body__btn-search">
-			<img src="assets/img/svg/search.svg" />
-		</div>
-		<div class="search__body__filter">Фильтры</div>
-	</div>
-</div>
+<app-address-bar (openPopup)="openPopup($event)"></app-address-bar>
 <div class="content">
 	<div class="workers">
-		<div class="workers__card" *ngFor="let mockWorkersCard of mockWorkersCards" id="{{ mockWorkersCard.id }}" routerLink="/profile/{{mockWorkersCard.id}}">
+		<div class="workers__card" *ngFor="let WorkersCard of WorkersCards" id="{{ WorkersCard.id_worker }}" routerLink="/profile/{{WorkersCard.id_worker}}">
 			<div class="workers__card__body">
 				<div class="workers__card__body__name">
-					<div class="workers__card__body__name__fio">
-						{{ mockWorkersCard.fio }}
+					<div class="workers__card__body__name__text">
+						{{convertFullName(WorkersCard.fio_worker)}}
 					</div>
 					<div class="workers__card__body__name__category">
-						<img src="assets/img/svg/{{ mockWorkersCard.itr }}.svg" />
+						<img src="assets/img/svg/{{convertCategory(WorkersCard.categories_worker)}}.svg" />
 						<!--<img src="assets/img/svg/compass.svg" />-->
 					</div>
 				</div>
@@ -35,16 +19,14 @@
 							Дата рождения:
 						</div>
 						<div class="workers__card__body__info__row__section-info">
-							{{ mockWorkersCard.dateHBD }}
+							{{convertedDate(WorkersCard?.birthday_worker)}}
 						</div>
 					</div>
 					<div class="workers__card__body__info__row">
 						<div class="workers__card__body__info__row__section">
 							Образование:
 						</div>
-						<div class="workers__card__body__info__row__section-info">
-							{{ mockWorkersCard.education }}
-						</div>
+						<div class="workers__card__body__info__row__section-info"><!-- {{ WorkersCard.education }} -->net</div>
 					</div>
 					<div class="workers__card__body__info__row">
 						<div class="workers__card__body__info__row__section">
@@ -59,7 +41,7 @@
 							Должность:
 						</div>
 						<div class="workers__card__body__info__row__section-info">
-							{{ mockWorkersCard.job }}
+							{{convertedPositions(WorkersCard?.positions_worker, WorkersCard?.departments_worker)}}
 						</div>
 					</div>
 				</div>
@@ -72,3 +54,12 @@
 		<div></div>
 	</div>
 </div>
+
+<app-popup [title]="currentName === 'addworker' ? 'Добавление нового сотрудника' : 'Error 404: Popup was not received or does not exist'" [isOpen]="isModalOpen" (closeModalEvent)="closeModal()">
+	<ng-container *ngIf="currentName === 'addworker'">
+		<app-popup-header [title]="'Добавление нового сотрудника'" (closeModalEvent)="closeModal()"></app-popup-header>
+		<app-popup-body>
+			<app-add-worker-popup (closeModalEvent)="closeModal()" (updateWorkerCards)="getAllWorker()"></app-add-worker-popup>
+		</app-popup-body>
+	</ng-container>
+</app-popup>

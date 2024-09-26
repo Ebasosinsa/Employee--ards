@@ -1,9 +1,11 @@
 <label class="body" for="{{forid}}">
 	<div class="body__main">
-		<div class="body__main__title" [class.show]="isShowed">
-			{{title}}
-		</div>
-		<div class="body__main__body" [class.show]="isShowed">
+		@if (isInvalid && formSubmitted) {
+		<div class="body__main__err">{{title}} {{ErrorMessage}}</div>
+		} @else{
+		<div class="body__main__title" [class.show]="isShowed">{{title}}</div>
+		}
+		<div class="body__main__body" [class.show]="isShowed" [class.err]="isInvalid && formSubmitted">
 			<input
 				[readonly]="isReadOnly"
 				#myInputDropDown
@@ -15,7 +17,7 @@
 				placeholder="{{pholder}}"
 				(input)="onInputValueChange($event)"
 				(click)="toggleActive()"
-				(blur)="isShowed=false"
+				(blur)="isShowed=onBlur()"
 			/><!--(keyup)="filteringArr()"-->
 			<div class="body__main__body__caret" [class.show]="isShowed">
 				<svg id="positions_worker_carret" class="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,15 +28,21 @@
 	</div>
 	<div class="body__main__dropdown" [class.show]="isShowed">
 		<div class="body__main__dropdown__body">
+			@if (forid == 'positions_worker' && this.optionskeys.length == 0) {
+			<div class="body__main__dropdown__body__row" name="dropdown__body__row" id="1">
+				<div class="body__main__dropdown__body__row__text">Для появления должностей выберете Филиал!</div>
+			</div>
+			} @else {
 			<div
 				class="body__main__dropdown__body__row"
-				name="positions_worker_dropdownrow"
+				name="dropdown__body__row"
 				id="{{inputArrFiltered[this.optionskeys[0]]}}"
 				*ngFor="let inputArrFiltered of options"
 				(click)="addValue(inputArrFiltered[this.optionskeys[1]], inputArrFiltered[this.optionskeys[2]]); isShowed=false"
 			>
 				<div class="body__main__dropdown__body__row__text">{{inputArrFiltered[this.optionskeys[1]]}}</div>
 			</div>
+			}
 		</div>
 	</div>
 </label>

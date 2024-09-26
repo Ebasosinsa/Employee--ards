@@ -10,11 +10,10 @@ export interface workerinfo {
   positions_worker: number;
   competency_worker: string;
   categories_worker: number;
-  date_hiring_worker: string;
-  date_layoff_worker: string;
+  date_hiring_worker: any;
   note_worker?: string;
   add_date_worker: string;
-  photo_worker: string;
+  photo_worker: File | null;
   positions_worker_card: any;
 
   workercategory?: workercategory;

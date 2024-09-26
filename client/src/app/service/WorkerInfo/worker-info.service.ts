@@ -3,15 +3,16 @@ import { workerinfo } from '../../models/workerinfo';
 import { Observable, map, catchError, throwError } from 'rxjs';
 import { ResponseHttp } from '../../models/responseHttp';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ALL } from 'node:dns';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorkerInfoService {
   //https://jsonplaceholder.typicode.com/posts
-  apiUrl = 'http://127.0.0.1:8000';
-  apiUrlAdd = '/api/workerinfo'; //
-  hyi: any;
+  apiUrl = 'http://127.0.0.1:8000/';
+  apiWorkerinfo = 'api/workerinfo/'; //
+
   constructor(private http: HttpClient) {}
   /*addProfile(profile: workerinfo) {
     return this.http.post(this.apiUrl + this.apiUrlAdd, profile);
@@ -33,53 +34,42 @@ export class WorkerInfoService {
       })
     );
   }*/
-  getProfile(): Observable<workerinfo> {
+  getAllProfile(): Observable<workerinfo> {
     return this.http
-      .get<workerinfo>(this.apiUrl + this.apiUrlAdd, httpOptions)
+      .get<workerinfo>(this.apiUrl + this.apiWorkerinfo, httpOptions)
+      .pipe();
+  }
+  getProfile(profile_id: number): Observable<any> {
+    return this.http
+      .get<any>(this.apiUrl + this.apiWorkerinfo + profile_id, httpOptions)
       .pipe();
   }
   /** POST: add a new hero to the database */
-  addProfile(profile: workerinfo): Observable<workerinfo> {
+  addProfile(profile: any): Observable<any> {
     return this.http
-      .post<workerinfo>(this.apiUrl + this.apiUrlAdd, profile, httpOptions)
+      .post<any>(this.apiUrl + this.apiWorkerinfo, profile, httpOptions)
       .pipe();
   }
-  /*addProfile(profile: workerinfo): Observable<workerinfo> {
-    console.log('proveil', profile);
+
+  updateProfile(id: number, updateprofile: any): Observable<any> {
+    console.log('updateprofile:', updateprofile);
     return this.http
-      .post<ResponseHttp>(this.apiUrl + this.apiUrlAdd, profile)
-      .pipe(
-        map((data) => {
-          console.log('proveil', profile);
-          console.log('return11111111111', data);
-          return data as any;
-        }),
-        catchError((error: any) => {
-          return throwError(() => new Error(error));
-        })
-      );
-  }*/
-  updateProfile(profile: workerinfo): Observable<workerinfo> {
-    return this.http
-      .put<ResponseHttp>(
-        this.apiUrl + '/api/workerinfo/' + profile.id_worker,
-        profile
+      .put<any>(
+        this.apiUrl + `${this.apiWorkerinfo}${id}`,
+        JSON.stringify(updateprofile),
+        httpOptions
       )
-      .pipe(
-        map((data) => {
-          console.log('return11111111111', data.data.items);
-          return data.data.items as any;
-        }),
-        catchError((error: any) => {
-          return throwError(() => new Error(error));
-        })
-      );
+      .pipe();
+  }
+  deleteProfile(id: number): Observable<workerinfo> {
+    return this.http
+      .delete<any>(this.apiUrl + `${this.apiWorkerinfo}${id}`, httpOptions)
+      .pipe();
   }
 }
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'my-auth-token',
+    Accept: 'application/json',
   }),
 };

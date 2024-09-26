@@ -1,0 +1,29 @@
+<div class="body__popup">
+	<div class="body__popup__container">
+		<div class="body__popup__container__body">
+			<form class="body__popup__container__body__content" enctype="multipart/form-data">
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section">
+						<div class="body__popup__container__body__content__row__section__icon">
+							<img class="body__popup__container__body__content__row__section__icon__size" src="assets/img/svg/wrong-user.svg" />
+						</div>
+						<div class="body__popup__container__body__content__row__section__title">{{getErrorMessage('title')}}</div>
+						<div class="body__popup__container__body__content__row__section__text">
+							{{getErrorMessage('text')}}
+						</div>
+					</div>
+				</div>
+				<div class="body__popup__container__body__content__row">
+					<div class="body__popup__container__body__content__row__section__btn">
+						<div class="body__popup__container__body__content__row__section__btn__submit">
+							<input type="submit" id="dell_worker_submit" class="body__popup__container__body__content__row__section__btn__submit__input" (click)="onSubmit($event)" [value]="getErrorMessage('btnsumbitname')" />
+						</div>
+						<div class="body__popup__container__body__content__row__section__btn__cancel" (click)="onReset()">
+							<button class="body__popup__container__body__content__row__section__btn__cancel__input">Отменить</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

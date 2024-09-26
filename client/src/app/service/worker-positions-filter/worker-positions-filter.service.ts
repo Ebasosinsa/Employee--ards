@@ -10,7 +10,8 @@ import { catchError, map } from 'rxjs/operators';
 export class WorkerPositionsFilterService {
   apiUrl = 'http://127.0.0.1:8000';
   apiUrlAdd = '/api/gt-workerpositions-filter';
-  inputValue: string;
+  apiUrlAll = '/api/all-worker-positions';
+  inputValue!: string;
 
   constructor(private http: HttpClient) {}
 
@@ -61,8 +62,21 @@ export class WorkerPositionsFilterService {
       this.apiUrlAdd = '/api/etc-workerpositions-filter';
     }
     console.log('apiUrl', this.apiUrlAdd);
+    return this.http.get<ResponseHttp>(this.apiUrl + this.apiUrlAdd).pipe(
+      map((data) => {
+        console.log('return', data);
+        return data as any;
+      }),
+      catchError((error: any) => {
+        return throwError(() => new Error(error));
+      })
+    );
+  }
+
+  getAllPositions(): Observable<any[]> {
+    console.log('apiUrl', this.apiUrlAdd);
     return this.http
-      .get<ResponseHttp>(this.apiUrl + this.apiUrlAdd /*this.confgapiUrl*/)
+      .get<ResponseHttp>(this.apiUrl + this.apiUrlAll /*this.confgapiUrl*/)
       .pipe(
         map((data) => {
           console.log('return', data);

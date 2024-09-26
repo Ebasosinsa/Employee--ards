@@ -23,15 +23,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class InputModulToggleComponent implements ControlValueAccessor {
-  @ViewChild('myInputToggle') myInputToggle: ElementRef;
-  @Input() title: string;
-  @Input() type: string;
-  @Input() pholder: string;
-  @Input() inputid: string;
-  @Input() forid: string;
-  @Input() leftside: string;
-  @Input() rightside: string;
-  @Input() options: any[];
+  @ViewChild('myInputToggle')
+  myInputToggle!: ElementRef;
+  @Input()
+  title!: string;
+  @Input()
+  type!: string;
+  @Input()
+  pholder!: string;
+  @Input()
+  inputid!: string;
+  @Input()
+  forid!: string;
+  @Input()
+  leftside!: string;
+  @Input()
+  rightside!: string;
+  @Input()
+  options!: any[];
 
   public optionskeys: any;
   public isShowed: boolean = false;
@@ -40,32 +49,27 @@ export class InputModulToggleComponent implements ControlValueAccessor {
   public isCheckedvalue: boolean = false;
   public value: boolean = false;
 
-  private onChange!: (value: string) => void;
-  private onTouched!: () => void;
+  checked = false;
+  onChange: (_: any) => void = (_: any) => {};
 
   constructor(private readonly changeDetector: ChangeDetectorRef) {}
   public onInputValueChange(event: Event): void {
     const targetDivElement = event.target as HTMLInputElement;
     const value = targetDivElement.value;
 
-    this.onChange(value);
+    this.onChange;
   }
 
-  public writeValue(value: any): void {
-    this.value = value;
-
-    this.changeDetector.detectChanges();
+  writeValue(val: any): void {
+    this.checked = val;
   }
 
-  public registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
+  registerOnTouched(fn: any): void {}
   //Конец ControlValueAccessor
-  ngOnInit(): void {}
 
   ToggleAddWorker() {
     /*this.isOpen
@@ -79,7 +83,8 @@ export class InputModulToggleComponent implements ControlValueAccessor {
     this.isChecked
       ? ((this.isChecked = false), (this.value = false))
       : ((this.isChecked = true), (this.value = true));
-    console.log(this.value);
+    this.onChange(this.isChecked);
+    console.log(this.isChecked);
     this.isShowed = !this.isShowed;
   }
 }

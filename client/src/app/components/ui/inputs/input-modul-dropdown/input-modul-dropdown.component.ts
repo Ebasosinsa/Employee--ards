@@ -9,9 +9,11 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 @Component({
   selector: 'app-input-modul-dropdown',
   templateUrl: './input-modul-dropdown.component.html',
@@ -26,21 +28,36 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class InputModulDropdownComponent implements ControlValueAccessor {
-  @ViewChild('myInputDropDown') myInputDropDown: ElementRef;
-  @Input() title: string;
-  @Input() type: string;
-  @Input() pholder: string;
-  @Input() inputid: string;
-  @Input() forid: string;
-  @Input() options: any[];
-  @Input() isReadOnly: boolean;
+  @ViewChild('myInputDropDown')
+  myInputDropDown!: ElementRef;
+  @Input()
+  title!: string;
+  @Input()
+  type!: string;
+  @Input()
+  pholder!: string;
+  @Input()
+  inputid!: string;
+  @Input()
+  forid!: string;
+  @Input()
+  options!: any[];
+  @Input()
+  isReadOnly!: boolean;
+  @Input()
+  Error: AbstractControl<any, any> | null;
+  @Input()
+  ErrorMessage: string | null;
   @Output() changeCardWorker = new EventEmitter<any>();
+  @Input()
+  formSubmitted: boolean;
 
   public optionskeys: any;
 
   public isShowed: boolean = false;
 
   public value: string | undefined;
+  public valueid: number | undefined;
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
@@ -88,8 +105,24 @@ export class InputModulDropdownComponent implements ControlValueAccessor {
   //Добавление значение в инпут при выборе
   public addValue(inputValue: string, kardworker: string) {
     this.value = inputValue;
-    console.log(kardworker);
+    console.log(this.value);
     this.changeCardWorker.emit(kardworker);
-    this.onChange(this.value);
+    this.onChange(inputValue);
+  }
+
+  get hasError(): boolean {
+    console.log(this.hasError);
+    return (this.Error?.hasError('required') && this.Error?.touched) ?? false;
+  }
+
+  get isInvalid(): boolean {
+    if (this.Error?.invalid && this.Error?.touched) {
+      return true;
+    }
+    return false;
+  }
+  onBlur() {
+    this.Error?.markAsTouched();
+    return false;
   }
 }

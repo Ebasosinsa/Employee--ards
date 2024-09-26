@@ -1,0 +1,11 @@
+<div class="custom__notification">
+	<div class="custom__notification__icon">
+		<img src="assets/img/svg/{{data?.icon}}.svg" />
+	</div>
+	<span matSnackBarLabel class="custom__notification__text" matSnackBarLabel>{{data?.message}}</span>
+	<span matSnackBarActions>
+		<button class="custom__notification__button" (click)="closeSnacBar()">{{data?.action}}</button>
+	</span>
+</div>
+
+<!--  -->
